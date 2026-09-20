@@ -1,0 +1,1658 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="برنامه‌ی ۱۳ مرحله‌ای آموزش تولید تصویر، ویدیو و محتوای افغانستان — با گوشی و ابزار رایگان.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="مسیر محتوای افغانستان">
+<meta property="og:description" content="برنامه‌ی ۱۳ مرحله‌ای آموزش تولید محتوا با گوشی.">
+<title>مسیر محتوای افغانستان</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&family=Vazirmatn:wght@400;500;700&display=swap">
+<style>
+  /* base reset */
+  html{color-scheme:light}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+
+  :root{
+    --paper:#EEF1F6; --surface:#FFFFFF; --surface-2:#F6F8FB;
+    --ink:#0F1B31; --ink-2:#3A4A66; --muted:#66799A;
+    --line:#D7DEEA; --line-soft:#E6EBF3;
+    --lapis:#1B4B8F; --lapis-soft:#E8EEF9;
+    --gold:#B5821F; --gold-soft:#FAF1DC;
+    --green:#256E52; --green-soft:#E1F0E9;
+    --shadow:0 1px 2px rgba(15,27,49,.06), 0 8px 24px -16px rgba(15,27,49,.28);
+    --r:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#080E1A; --surface:#111B2C; --surface-2:#16223A;
+      --ink:#E7EDF7; --ink-2:#BCC8DC; --muted:#8A9BB9;
+      --line:#26344C; --line-soft:#1D2A3F;
+      --lapis:#7DA8ED; --lapis-soft:#16243D;
+      --gold:#DDB35A; --gold-soft:#2A2317;
+      --green:#57B08A; --green-soft:#122A21;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.9);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#080E1A; --surface:#111B2C; --surface-2:#16223A;
+    --ink:#E7EDF7; --ink-2:#BCC8DC; --muted:#8A9BB9;
+    --line:#26344C; --line-soft:#1D2A3F;
+    --lapis:#7DA8ED; --lapis-soft:#16243D;
+    --gold:#DDB35A; --gold-soft:#2A2317;
+    --green:#57B08A; --green-soft:#122A21;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.9);
+  }
+
+  *{box-sizing:border-box}
+  body{direction:rtl;background:var(--paper);color:var(--ink);
+    font-family:"Vazirmatn","Segoe UI",Tahoma,sans-serif;font-size:15px;line-height:1.9;
+    -webkit-font-smoothing:antialiased}
+  .shell{max-width:900px;margin:0 auto;padding:0 18px 72px}
+  h1,h2,h3,h4{font-family:"Noto Kufi Arabic","Vazirmatn",Tahoma,sans-serif;font-weight:700;line-height:1.55;text-wrap:balance;margin:0}
+  p{margin:0}
+  a{color:var(--lapis);text-underline-offset:3px}
+  :focus-visible{outline:2px solid var(--lapis);outline-offset:2px;border-radius:6px}
+
+  .en{direction:ltr;unicode-bidi:isolate;display:inline-block;
+    font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.88em;
+    background:var(--surface-2);border:1px solid var(--line-soft);border-radius:5px;padding:0 6px}
+  .enblock{direction:ltr;text-align:left;unicode-bidi:isolate}
+
+  /* ---- masthead ---- */
+  .masthead{padding:36px 0 20px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:11.5px;letter-spacing:.14em;color:var(--gold);font-weight:700;margin-bottom:12px}
+  .masthead h1{font-size:clamp(26px,5vw,38px);letter-spacing:-.01em}
+  .lede{color:var(--ink-2);margin-top:12px;max-width:62ch}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .fact{font-size:12.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+  .fact b{color:var(--lapis);font-weight:700}
+
+  .console{margin-top:22px;background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+  .console-top{display:flex;flex-wrap:wrap;align-items:center;gap:18px;padding:16px 18px}
+  .ring{flex:none;position:relative;width:74px;height:74px}
+  .ring svg{transform:rotate(90deg) scaleY(-1)}
+  .ring-txt{position:absolute;inset:0;display:grid;place-items:center;
+    font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:15px;font-variant-numeric:tabular-nums}
+  .console-fields{flex:1 1 230px;min-width:190px;display:flex;flex-direction:column;gap:6px}
+  .console-fields label{font-size:12px;color:var(--muted);font-weight:500}
+  .console-fields input{width:100%;font-family:inherit;font-size:14.5px;padding:9px 12px;
+    border-radius:9px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink)}
+  .console-note{font-size:12px;color:var(--muted)}
+  .console-note.live{color:var(--green)}
+  .level-strip{display:flex;border-top:1px solid var(--line-soft);background:var(--surface-2)}
+  .level{flex:1;padding:10px 12px;font-size:12.5px;color:var(--muted);text-align:center;border-inline-start:1px solid var(--line-soft)}
+  .level:first-child{border-inline-start:0}
+  .level b{display:block;font-family:"Noto Kufi Arabic",sans-serif;font-size:13px;color:var(--ink-2)}
+  .level.reached{background:var(--green-soft);color:var(--green)}
+  .level.reached b{color:var(--green)}
+  .team{border-top:1px solid var(--line-soft)}
+  .team summary{cursor:pointer;padding:11px 18px;font-size:13px;font-weight:500;color:var(--ink-2);list-style:none}
+  .team summary::-webkit-details-marker{display:none}
+  .team summary::before{content:"▾ ";color:var(--muted)}
+  .team-list{padding:0 18px 16px;display:flex;flex-direction:column;gap:9px}
+  .mate{display:grid;grid-template-columns:1fr 46px;gap:8px;align-items:center;font-size:13px}
+  .mate-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar{grid-column:1/-1;height:5px;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--lapis);border-radius:99px}
+  .mate-pct{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;text-align:end}
+  .mgr{border-top:1px solid var(--line-soft);padding:10px 18px;display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted)}
+  .mgr input{width:16px;height:16px;accent-color:var(--lapis)}
+
+  .howto{margin-top:22px;background:var(--lapis-soft);border:1px solid var(--lapis);
+    border-radius:var(--r);padding:16px 18px}
+  .howto h2{font-size:16px;margin-bottom:9px}
+  .howto ol{margin:0;padding-inline-start:1.2em;display:flex;flex-direction:column;gap:5px}
+  .howto li{font-size:13.5px;color:var(--ink-2)}
+  .howto li strong{color:var(--ink)}
+
+  /* ---- term ---- */
+  .tw{display:inline}
+  .term{font:inherit;font-weight:700;color:var(--lapis);background:var(--lapis-soft);
+    border:0;border-bottom:1px dashed var(--lapis);border-radius:4px;padding:0 5px;cursor:pointer}
+  .term::after{content:" ؟";font-size:.75em;opacity:.65}
+  .def{display:none}
+  .tw.open .def{display:block;margin:9px 0;padding:11px 14px;background:var(--surface-2);
+    border:1px solid var(--line);border-inline-start:3px solid var(--lapis);
+    border-radius:0 10px 10px 0;font-size:13.5px;color:var(--ink-2);line-height:1.85}
+  .tw.open .term{background:var(--lapis);color:#fff;border-bottom-color:transparent}
+
+  /* ---- phase ---- */
+  .phase{margin-top:48px}
+  .phase-head{display:flex;align-items:baseline;gap:13px;padding-bottom:11px;border-bottom:2px solid var(--lapis)}
+  .phase-num{font-family:"Noto Kufi Arabic",sans-serif;font-size:12px;font-weight:700;color:#fff;
+    background:var(--lapis);border-radius:6px;padding:3px 9px;flex:none}
+  .phase-head h2{font-size:20px;flex:1}
+  .phase-weeks{font-size:12.5px;color:var(--muted);flex:none}
+  .phase-why{margin-top:13px;font-size:13.5px;color:var(--ink-2);border-inline-start:3px solid var(--gold);
+    background:var(--gold-soft);padding:11px 15px;border-radius:0 10px 10px 0}
+
+  /* ---- week ---- */
+  .week{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+    margin-top:16px;box-shadow:var(--shadow);overflow:hidden}
+  .week.done{border-color:var(--green)}
+  .week.locked{opacity:.72}
+  .week-head{display:flex;gap:13px;align-items:flex-start;padding:16px 18px 13px}
+  .tick{flex:none;width:26px;height:26px;margin-top:2px;border-radius:8px;border:1.5px solid var(--line);
+    background:var(--surface-2);cursor:pointer;display:grid;place-items:center;padding:0;transition:.14s}
+  .tick:hover{border-color:var(--lapis)}
+  .tick svg{width:14px;height:14px;opacity:0;transition:.14s}
+  .tick[aria-pressed="true"]{background:var(--green);border-color:var(--green)}
+  .tick[aria-pressed="true"] svg{opacity:1}
+  .tick[disabled]{cursor:not-allowed;opacity:.5}
+  .week-title{flex:1;min-width:0}
+  .week-kicker{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px}
+  .wnum{font-family:"Noto Kufi Arabic",sans-serif;font-size:11.5px;font-weight:700;color:var(--lapis);
+    background:var(--lapis-soft);border-radius:5px;padding:2px 8px}
+  .wtime{font-size:11.5px;color:var(--muted)}
+  .wopt{font-size:11.5px;color:var(--gold);background:var(--gold-soft);border-radius:5px;padding:2px 8px;font-weight:700}
+  .week-title h3{font-size:17.5px}
+  .week-goal{color:var(--ink-2);font-size:14px;margin-top:5px}
+  .week-body{padding:0 18px 18px}
+  .lockmsg{margin:0 18px 18px;padding:13px 15px;background:var(--surface-2);border:1px dashed var(--line);
+    border-radius:11px;font-size:13.5px;color:var(--muted)}
+  .lockmsg b{color:var(--ink-2)}
+
+  .block{margin-top:18px}
+  .block > h4{font-size:12px;letter-spacing:.09em;color:var(--muted);font-weight:700;margin-bottom:9px}
+  .block > p{font-size:14px;color:var(--ink-2)}
+  ol.steps,ol.taps{margin:0;padding-inline-start:1.3em;display:flex;flex-direction:column;gap:8px}
+  ol.steps li,ol.taps li{font-size:14px;color:var(--ink-2)}
+  ol.steps li strong,ol.taps li strong{color:var(--ink);font-weight:700}
+  ol.taps{counter-reset:none}
+  ul.plain{margin:0;padding-inline-start:1.2em;display:flex;flex-direction:column;gap:7px}
+  ul.plain li{font-size:14px;color:var(--ink-2)}
+  ul.plain li strong{color:var(--ink)}
+
+  .tut{margin-top:14px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .tut h5{font-family:"Noto Kufi Arabic",sans-serif;font-size:13.5px;font-weight:700;margin:0 0 10px;color:var(--ink)}
+  .tut h5 span{font-weight:400;color:var(--muted);font-size:12px}
+
+  .deliver{margin-top:16px;background:var(--lapis-soft);border-radius:11px;padding:12px 15px;display:flex;gap:11px;align-items:flex-start}
+  .deliver .tag{flex:none;font-size:11px;font-weight:700;color:var(--lapis);letter-spacing:.05em;padding-top:3px}
+  .deliver p{font-size:13.5px;color:var(--ink)}
+  .gate{margin-top:9px;font-size:13px;color:var(--ink-2);padding:10px 15px;border:1px dashed var(--line);border-radius:11px}
+  .gate b{color:var(--gold);font-weight:700}
+  .warn{margin-top:16px;background:var(--gold-soft);border-inline-start:3px solid var(--gold);
+    padding:12px 15px;border-radius:0 11px 11px 0;font-size:13.5px;color:var(--ink)}
+  .warn b{color:var(--gold)}
+  .ethic{margin-top:16px;background:var(--lapis-soft);border-inline-start:3px solid var(--lapis);
+    padding:12px 15px;border-radius:0 11px 11px 0;font-size:13.5px;color:var(--ink)}
+  .ethic b{color:var(--lapis)}
+
+  .example{margin-top:12px;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  .example-h{background:var(--surface-2);padding:8px 14px;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.06em}
+  .example-b{padding:12px 14px;font-size:13.5px;color:var(--ink-2);line-height:1.9}
+  .example-b b{color:var(--ink)}
+
+  .scroller{overflow-x:auto;margin-top:11px;border:1px solid var(--line);border-radius:11px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{background:var(--surface-2);font-family:"Noto Kufi Arabic",sans-serif;font-size:12px;
+    font-weight:700;color:var(--ink-2);text-align:start;padding:9px 13px;white-space:nowrap}
+  td{padding:9px 13px;border-top:1px solid var(--line-soft);color:var(--ink-2);vertical-align:top}
+  td:first-child{color:var(--ink);font-weight:500}
+
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+  .chip{font-size:12px;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:7px;padding:3px 9px;color:var(--ink-2)}
+  .chip b{color:var(--ink);font-weight:700}
+
+  .prompt{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-top:12px;overflow:hidden}
+  .prompt-head{display:flex;align-items:center;gap:10px;padding:11px 15px;border-bottom:1px solid var(--line-soft)}
+  .prompt-head h5{flex:1;font-family:"Noto Kufi Arabic",sans-serif;font-size:13.5px;font-weight:700;margin:0}
+  .copy{flex:none;font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;
+    background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);border-radius:8px;padding:5px 12px;transition:.14s}
+  .copy:hover{border-color:var(--lapis);color:var(--lapis)}
+  .copy.ok{background:var(--green-soft);border-color:var(--green);color:var(--green)}
+  pre{margin:0;padding:13px 15px;background:var(--surface-2);
+    font-family:ui-monospace,Consolas,monospace;font-size:12.5px;line-height:1.95;
+    white-space:pre-wrap;word-break:break-word;color:var(--ink-2)}
+  pre.enblock{direction:ltr;text-align:left}
+
+  footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+
+  @media (max-width:560px){
+    .level{flex:1 1 33%}
+    .phase-head{flex-wrap:wrap;gap:8px}
+    .phase-weeks{width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  .share{border-top:1px solid var(--line-soft);padding:12px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .share button{font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;
+    background:var(--lapis);border:1px solid var(--lapis);color:#fff;border-radius:9px;padding:7px 14px}
+  .share button.ok{background:var(--green);border-color:var(--green)}
+  .share span{font-size:12px;color:var(--muted);flex:1;min-width:160px}
+</style>
+</head>
+<body>
+
+<div dir="rtl" class="shell">
+
+<header class="masthead">
+  <div class="eyebrow">برنامه‌ی آموزش تیم · نسخه ۲</div>
+  <h1>مسیر محتوای افغانستان</h1>
+  <p class="lede">۱۳ مرحله برای یاد گرفتن تولید تصویر، ویدیو و محتوای افغانستان — فقط با گوشی، فقط با ابزار رایگان، همه‌چیز به فارسی. هر مرحله یک مهارت دارد و یک کار عملی. مرحله‌ی بعد بسته است تا مرحله‌ی قبل تمام شود.</p>
+  <div class="facts">
+    <span class="fact">فقط <b>گوشی</b></span>
+    <span class="fact">فقط ابزار <b>رایگان</b></span>
+    <span class="fact">هرکس با <b>سرعت خودش</b></span>
+  </div>
+
+  <div class="console">
+    <div class="console-top">
+      <div class="ring">
+        <svg width="74" height="74" viewBox="0 0 74 74" aria-hidden="true">
+          <circle cx="37" cy="37" r="31" fill="none" stroke="var(--line-soft)" stroke-width="7"></circle>
+          <circle id="ringArc" cx="37" cy="37" r="31" fill="none" stroke="var(--lapis)" stroke-width="7"
+                  stroke-linecap="round" stroke-dasharray="194.8" stroke-dashoffset="194.8"></circle>
+        </svg>
+        <div class="ring-txt" id="ringTxt">۰٪</div>
+      </div>
+      <div class="console-fields">
+        <label for="who">اسمت را اینجا بنویس (تا پیشرفتت ذخیره شود)</label>
+        <input id="who" type="text" placeholder="مثلاً: مریم" autocomplete="off" maxlength="40">
+        <div class="console-note" id="syncNote">پیشرفتت روی همین گوشی ذخیره می‌شود.</div>
+      </div>
+    </div>
+    <div class="level-strip">
+      <div class="level" id="lvl-bronze"><b>برنز</b>پایان مرحله ۶</div>
+      <div class="level" id="lvl-silver"><b>نقره</b>پایان مرحله ۹</div>
+      <div class="level" id="lvl-gold"><b>طلا</b>پایان مرحله ۱۲</div>
+    </div>
+    <div class="share">
+      <button type="button" id="shareBtn">کپی کردن پیشرفتم</button>
+      <span>یک خط متن کپی می‌شود — آن را در تلگرام برای مدیر بفرست.</span>
+    </div>
+    <label class="mgr"><input type="checkbox" id="mgrMode"> حالت مدیر — قفل همه‌ی مرحله‌ها را باز کن</label>
+  </div>
+
+  <div class="howto">
+    <h2>این صفحه چطور کار می‌کند</h2>
+    <ol>
+      <li><strong>اسمت را بالا بنویس.</strong> یک بار. بعد از آن هر تیکی که بزنی ذخیره می‌شود، حتی اگر صفحه را ببندی.</li>
+      <li><strong>فقط یک مرحله برایت باز است.</strong> بقیه قفل‌اند. این عمدی است — تا کار یک مرحله را تحویل ندهی، مرحله‌ی بعد باز نمی‌شود.</li>
+      <li><strong>وقتی کار مرحله را تحویل دادی و تأیید گرفتی</strong>، مربع کنار عنوان مرحله را بزن. مرحله‌ی بعد خودش باز می‌شود.</li>
+      <li><strong>هر جا کلمه‌ای دیدی که آخرش علامت «؟» داشت</strong>، رویش بزن — توضیحش همان‌جا باز می‌شود. لازم نیست جای دیگری دنبالش بگردی.</li>
+      <li><strong>هر مرحله کامل است.</strong> هرچه برای آن مرحله لازم داری — آموزش اپ، پرامپت آماده، مثال — داخل خودش هست.</li>
+    </ol>
+  </div>
+</header>
+
+<!-- ============ STAGE 0 ============ -->
+<section class="phase">
+  <div class="phase-head">
+    <span class="phase-num">مرحله صفر</span>
+    <h2>آماده کردن گوشی</h2>
+    <span class="phase-weeks">۲ تا ۳ ساعت</span>
+  </div>
+  <p class="phase-why">این مرحله آموزش نیست، آماده‌سازی است. هدفش این است که مطمئن شویم اپ‌ها روی گوشیِ تو واقعاً کار می‌کنند. اگر این را رد کنی و بعداً معلوم شود گوشی‌ات یکی از اپ‌ها را نمی‌کشد، هفته‌ها کار هدر می‌رود.</p>
+
+  <article class="week" data-order="0" data-id="w0">
+    <div class="week-head">
+      <button class="tick" data-tick="w0" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۰</span><span class="wtime">۲ تا ۳ ساعت</span></div>
+        <h3>نصب اپ‌ها و تست اینکه کار می‌کنند</h3>
+        <p class="week-goal">پنج اپ نصب کن، با هرکدام یک چیز کوچک بساز، و بفرست.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>۱ — ایمیل کاری</h4>
+        <p>برای ثبت‌نام در این اپ‌ها یک ایمیل جیمیل لازم داری.</p>
+        <ul class="plain">
+          <li><strong>اگر از قبل یک ایمیل داری که برای کار استفاده می‌کنی</strong> — همان خوب است. ایمیل جدید نساز، فقط اسمش را به مدیر بگو.</li>
+          <li><strong>اگر فقط ایمیل شخصی داری</strong> — یک جیمیل جدید بساز و فقط برای کار استفاده کن. دلیلش ساده است: عکس‌ها و فایل‌های کاری با شخصی قاطی نمی‌شود.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>۲ — این پنج اپ را نصب کن</h4>
+        <p>همه رایگان‌اند و از فروشگاه رسمی گوشی (Google Play یا App Store) نصب می‌شوند. نسخه‌ی رایگان برای تمام این دوره کافی است — هیچ‌جای این برنامه به نسخه‌ی پولی نیاز ندارد.</p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>اپ</th><th>برای چه کاری</th><th>از کجا</th></tr></thead>
+            <tbody>
+              <tr><td>CapCut</td><td>تدوین ویدیو (بریدن، موسیقی، متن)</td><td>Google Play / App Store</td></tr>
+              <tr><td>Canva</td><td>ساخت پست و پوستر از روی قالب آماده</td><td>Google Play / App Store</td></tr>
+              <tr><td>Gemini</td><td>دستیار هوش مصنوعی: متن، تصویر، پیاده کردن صدا</td><td>Google Play / App Store</td></tr>
+              <tr><td>PixelLab</td><td>نوشتن متن فارسی روی تصویر</td><td>Google Play (اندروید)</td></tr>
+              <tr><td>Phonto</td><td>همان کار PixelLab، برای آیفون</td><td>App Store (آیفون)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn"><b>چرا هم کانوا و هم پیکسل‌لب؟</b> کانوا برای چیدمان و قالب عالی است، ولی متن فارسی در آن گاهی خراب می‌شود — حروف از هم جدا می‌شوند یا برعکس می‌چینند. پیکسل‌لب و فونتو مخصوص نوشتن روی تصویر ساخته شده‌اند و فارسی را درست نشان می‌دهند. پس: <strong>طرح در کانوا، متن فارسی در پیکسل‌لب.</strong></div>
+        <div class="warn"><b>اگر CapCut روی گوشی‌ات نصب نشد یا باز نشد:</b> به جایش <strong>VN Video Editor</strong> را نصب کن. رایگان است، واترمارک نمی‌گذارد، و همه‌ی کارهای این دوره را انجام می‌دهد. به مدیر خبر بده که تو با VN کار می‌کنی.</div>
+      </div>
+
+      <div class="block">
+        <h4>۳ — تست سازگاری: سه چیز بساز و بفرست</h4>
+        <p>«تست سازگاری» یعنی امتحان کردن اینکه اپ‌ها روی گوشیِ <em>تو</em> واقعاً کار می‌کنند. کیفیت کار اصلاً مهم نیست — فقط باید ساخته شود و بیرون بیاید. سه کار زیر را دقیقاً همین‌طور که نوشته انجام بده:</p>
+
+        <div class="tut">
+          <h5>تست ۱ — یک تصویر با Gemini <span>حدود ۵ دقیقه</span></h5>
+          <ol class="taps">
+            <li>اپ <strong>Gemini</strong> را باز کن و با ایمیل کاری‌ات وارد شو.</li>
+            <li>در کادر پایین این جمله را دقیقاً بنویس و بفرست:<br><em>«یک تصویر بساز: یک فنجان چای سبز روی میز چوبی، کنار پنجره، نور طبیعی صبح.»</em></li>
+            <li>وقتی تصویر ساخته شد، روی آن بزن و <strong>ذخیره‌اش کن در گالری</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="tut">
+          <h5>تست ۲ — یک طرح با Canva <span>حدود ۱۰ دقیقه</span></h5>
+          <ol class="taps">
+            <li>اپ <strong>Canva</strong> را باز کن و وارد شو.</li>
+            <li>روی دکمه‌ی <strong>+</strong> (پایین وسط) بزن.</li>
+            <li>گزینه‌ی <span class="en">Custom size</span> را انتخاب کن، عرض را <strong>۱۰۸۰</strong> و ارتفاع را <strong>۱۳۵۰</strong> بگذار، بعد <span class="en">Create</span>.</li>
+            <li>روی صفحه‌ی سفید بزن، از منوی پایین <span class="en">Text</span> را انتخاب کن و یک متن اضافه کن. هر چیزی بنویس، مثلاً اسم خودت.</li>
+            <li>بالای صفحه سمت راست، آیکن <strong>دانلود</strong> (فلش رو به پایین) → <span class="en">PNG</span> → ذخیره در گالری.</li>
+          </ol>
+        </div>
+
+        <div class="tut">
+          <h5>تست ۳ — یک ویدیوی ۱۰ ثانیه‌ای با CapCut <span>حدود ۱۰ دقیقه</span></h5>
+          <ol class="taps">
+            <li>اپ <strong>CapCut</strong> را باز کن.</li>
+            <li>دکمه‌ی بزرگ <span class="en">New project</span> (پروژه‌ی جدید) وسط صفحه.</li>
+            <li>از گالری، <strong>سه تا عکس</strong> انتخاب کن (هر عکسی) و <span class="en">Add</span> را بزن.</li>
+            <li>بالای صفحه سمت راست، آیکن <strong>خروجی</strong> (فلش رو به بالا یا کلمه‌ی <span class="en">Export</span>) را بزن.</li>
+            <li>کیفیت را روی <strong>1080p</strong> و <span class="en">Frame rate</span> را روی <strong>30</strong> بگذار، بعد <span class="en">Export</span>.</li>
+            <li>صبر کن تا ذخیره شود.</li>
+          </ol>
+        </div>
+
+        <p style="margin-top:14px">حالا هر سه فایل (یک تصویر Gemini، یک تصویر Canva، یک ویدیوی CapCut) را در تلگرام برای مدیر بفرست.</p>
+        <div class="warn"><b>اگر هرکدام کار نکرد، همان لحظه به مدیر بگو.</b> این اصلاً بد نیست — کل هدفِ این مرحله همین است که الان بفهمیم، نه دو ماه دیگر.</div>
+      </div>
+
+      <div class="block">
+        <h4>۴ — بانک محتوا</h4>
+        <p>«بانک محتوا» فقط یک اسم است برای یک <strong>گروه یا کانال تلگرام</strong> که همه‌ی کارهای ساخته‌شده آنجا فرستاده می‌شود. چیز پیچیده‌ای نیست. کارش این است که هیچ فایلی گم نشود و بعداً بتوانی کارهای قدیمی‌ات را پیدا کنی.</p>
+        <ol class="steps">
+          <li>مدیر یک گروه تلگرام می‌سازد و تو را اضافه می‌کند.</li>
+          <li>هر فایلی که می‌سازی — عکس، پوستر، ویدیو — <strong>همان‌جا می‌فرستی</strong>، حتی اگر کار تمرینی باشد.</li>
+          <li>زیر هر فایل، یک خط توضیح می‌نویسی. فقط سه چیز: <strong>تاریخ، موضوع، اسم خودت</strong>.</li>
+        </ol>
+        <div class="example">
+          <div class="example-h">نمونه‌ی پیامی که زیر فایل می‌فرستی</div>
+          <div class="example-b">۱۹ سنبله — پوستر درباره‌ی بازگشایی مکاتب — مریم — نسخه ۱</div>
+        </div>
+        <p style="margin-top:11px">همین. لازم نیست اسم فایل را عوض کنی یا پوشه بسازی.</p>
+      </div>
+
+      <div class="block">
+        <h4>۵ — گوشی را آماده کن</h4>
+        <ul class="plain">
+          <li><strong>حداقل ۵ گیگابایت فضای خالی</strong> داشته باش. ویدیو حجم زیادی می‌گیرد و کپ‌کات وسط کار خطا می‌دهد اگر جا نباشد.</li>
+          <li><strong>کیفیت دوربین را روی ۱۰۸۰p بگذار</strong> (در تنظیمات دوربین). بالاتر لازم نیست و فقط حافظه می‌خورد.</li>
+        </ul>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>سه فایل تست (Gemini، Canva، CapCut) را در گروه تلگرام برای مدیر بفرست.</p></div>
+      <div class="gate"><b>کِی تیک بزنی:</b> وقتی هر سه فایل را فرستادی و مدیر گفت «تأیید».</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ PHASE 1 ============ -->
+<section class="phase">
+  <div class="phase-head">
+    <span class="phase-num">فاز ۱</span>
+    <h2>محتوا و تحقیق</h2>
+    <span class="phase-weeks">مرحله ۱ تا ۳</span>
+  </div>
+  <p class="phase-why">سه مرحله‌ی اول اصلاً ابزار نیست. ممکن است فکر کنی «پس کی می‌رسیم به ساختن عکس؟» — جواب: از مرحله ۵. این سه مرحله را که رد کنی، عکس‌هایت زیبا می‌شوند ولی حرفی برای گفتن ندارند. این‌ها همان چیزی است که کار تو را از کار یک نفر که فقط اپ بلد است جدا می‌کند.</p>
+
+  <article class="week" data-order="1" data-id="w1">
+    <div class="week-head">
+      <button class="tick" data-tick="w1" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۱</span><span class="wtime">۳ تا ۶ ساعت</span></div>
+        <h3>برای چه کسی می‌سازیم؟</h3>
+        <p class="week-goal">بفهمیم مخاطب ما دقیقاً چه کسی است و با چه واژه‌هایی حرف می‌زند.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>مهم‌ترین چیز این مرحله</h4>
+        <p>فارسی افغانستان با فارسی ایران فرق دارد. اگر واژه‌ی ایرانی به کار ببری، مخاطب افغانستانی فوراً می‌فهمد این محتوا برای او ساخته نشده و رد می‌شود.</p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>در ایران می‌گویند</th><th>در افغانستان می‌گویند</th></tr></thead>
+            <tbody>
+              <tr><td>دانشگاه</td><td>پوهنتون</td></tr>
+              <tr><td>دانشجو</td><td>محصل</td></tr>
+              <tr><td>مدرسه</td><td>مکتب</td></tr>
+              <tr><td>کلاس</td><td>صنف</td></tr>
+              <tr><td>بیمارستان</td><td>شفاخانه</td></tr>
+              <tr><td>خیابان</td><td>سرک</td></tr>
+              <tr><td>ماشین</td><td>موتر</td></tr>
+              <tr><td>دوچرخه</td><td>بایسکل</td></tr>
+              <tr><td>هواپیما</td><td>طیاره</td></tr>
+              <tr><td>بچه</td><td>طفل</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>ماه‌های سال در افغانستان</h4>
+        <p>اگر پستی برای یک مناسبت می‌سازی، باید نام ماه را درست بنویسی:</p>
+        <div class="chips">
+          <span class="chip"><b>حمل</b> فروردین</span><span class="chip"><b>ثور</b> اردیبهشت</span><span class="chip"><b>جوزا</b> خرداد</span>
+          <span class="chip"><b>سرطان</b> تیر</span><span class="chip"><b>اسد</b> مرداد</span><span class="chip"><b>سنبله</b> شهریور</span>
+          <span class="chip"><b>میزان</b> مهر</span><span class="chip"><b>عقرب</b> آبان</span><span class="chip"><b>قوس</b> آذر</span>
+          <span class="chip"><b>جدی</b> دی</span><span class="chip"><b>دلو</b> بهمن</span><span class="chip"><b>حوت</b> اسفند</span>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>کار عملی این مرحله: سه «کارت مخاطب»</h4>
+        <p>یک <span class="tw"><button class="term" type="button">کارت مخاطب</button><span class="def">یک صفحه‌ی کوتاه که در آن یک آدم فرضی را توصیف می‌کنی — انگار داری یکی از دنبال‌کننده‌هایت را برای کسی معرفی می‌کنی. اسم فرضی می‌گذاری، سن و شهرش را می‌نویسی، می‌گویی چه چیزی برایش مهم است و کجا وقت می‌گذراند. فایده‌اش این است که وقتی می‌خواهی پست بنویسی، به جای «مردم»، برای <em>همان یک نفر</em> می‌نویسی. متن وقتی برای یک نفر مشخص نوشته شود، خیلی بهتر از آب درمی‌آید.</span></span> یعنی همین. بعضی‌ها به این می‌گویند <span class="tw"><button class="term" type="button">پرسونا</button><span class="def">«پرسونا» فقط اسم انگلیسیِ همان کارت مخاطب است. یعنی یک شخصیت فرضی که نماینده‌ی گروهی از مخاطبان واقعی توست. لازم نیست این کلمه را به کار ببری — «کارت مخاطب» همان است.</span></span>، ولی اسمش مهم نیست.</p>
+
+        <div class="example">
+          <div class="example-h">نمونه‌ی یک کارت مخاطب — تو باید سه تا مثل این بنویسی</div>
+          <div class="example-b">
+            <b>اسم فرضی:</b> زهرا<br>
+            <b>سن:</b> ۲۹ سال<br>
+            <b>کجا زندگی می‌کند:</b> هرات، شهر<br>
+            <b>چه می‌کند:</b> خانه‌دار، دو فرزند دارد که یکی‌شان به مکتب می‌رود<br>
+            <b>کجا وقت می‌گذراند:</b> فیسبوک، شب‌ها بعد از خواباندن بچه‌ها، حدود یک ساعت<br>
+            <b>سه چیزی که برایش مهم است:</b> آینده‌ی تحصیل دخترش · قیمت مواد خوراکی · اینکه بداند خانواده‌های دیگر هم همین مشکل را دارند<br>
+            <b>یک جمله که خودش می‌گوید:</b> «من نمی‌خواهم دخترم مثل من بماند.»
+          </div>
+        </div>
+
+        <p style="margin-top:12px">سه کارت بنویس که با هم فرق داشته باشند — مثلاً یکی زن خانه‌دار در شهر، یکی جوان دانشجو، یکی مهاجر افغانستانی در کشور دیگر. لازم نیست واقعی باشند؛ باید <strong>باورکردنی</strong> باشند.</p>
+        <p style="margin-top:10px">اگر گیر کردی، این را در Gemini بنویس:</p>
+        <div class="prompt">
+          <div class="prompt-head"><h5>کمک برای نوشتن کارت مخاطب</h5><button class="copy">کپی</button></div>
+          <pre>من می‌خواهم برای مخاطب افغانستان محتوا بسازم.
+سه شخصیت فرضی متفاوت برایم توصیف کن که مخاطب واقعی این محتوا باشند.
+برای هرکدام بنویس: اسم فرضی، سن، شهر، شغل یا وضعیت، کدام شبکه‌ی اجتماعی
+را استفاده می‌کند و چه ساعتی، سه چیزی که برایش مهم است، و یک جمله که خودش می‌گوید.
+به فارسی افغانستان بنویس. کوتاه و ساده. مقدمه ننویس.</pre>
+        </div>
+        <p style="margin-top:10px;font-size:13px;color:var(--muted)">جوابش را عیناً کپی نکن — بخوان، هرچه به نظرت غیرواقعی آمد عوض کن، و با کلمات خودت بازنویسی کن.</p>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>سه کارت مخاطب بنویس (در تلگرام یا هر جای دیگر) و برای مدیر بفرست.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> کارت را یک بار خودت بخوان و از خودت بپرس «آیا چنین آدمی را می‌شناسم؟» اگر جوابت نه بود، هنوز خیلی کلی است — جزئیات بیشتری اضافه کن.</div>
+    </div>
+  </article>
+
+  <article class="week" data-order="2" data-id="w2">
+    <div class="week-head">
+      <button class="tick" data-tick="w2" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۲</span><span class="wtime">۴ تا ۸ ساعت</span></div>
+        <h3>پیدا کردن سوژه و مطمئن شدن از درستی‌اش</h3>
+        <p class="week-goal">خودت سوژه پیدا کنی و بتوانی ثابت کنی درست است.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>۱ — جستجوی بهتر در گوگل</h4>
+        <p>این چند علامت را در کادر جستجوی گوگل بنویس تا نتیجه‌ها دقیق‌تر شود:</p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>بنویس</th><th>چه می‌کند</th></tr></thead>
+            <tbody>
+              <tr><td><span class="en">"بازگشایی مکاتب دختران"</span></td><td>فقط صفحه‌هایی که دقیقاً همین عبارت را دارند</td></tr>
+              <tr><td><span class="en">site:unicef.org</span> افغانستان</td><td>فقط داخل سایت یونیسف می‌گردد</td></tr>
+              <tr><td>آمار مهاجرت <span class="en">-ویکی‌پدیا</span></td><td>نتایج ویکی‌پدیا را حذف می‌کند</td></tr>
+              <tr><td>گزارش سواد <span class="en">filetype:pdf</span></td><td>فقط فایل‌های PDF — معمولاً گزارش‌های رسمی</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:11px">بعد از جستجو، زیر کادر جستجو دنبال <span class="en">Tools</span> بگرد و بازه‌ی زمانی را روی «سال گذشته» بگذار. بیشترِ اشتباه‌ها از این می‌آید که خبر سه سال پیش را تازه فرض می‌کنیم.</p>
+      </div>
+
+      <div class="block">
+        <h4>۲ — جستجوی تصویر معکوس (مهم‌ترین مهارت این مرحله)</h4>
+        <p>در جستجوی معمولی، تو <strong>کلمه</strong> می‌دهی و گوگل <strong>عکس</strong> پیدا می‌کند. در جستجوی معکوس برعکس است: تو <strong>عکس</strong> می‌دهی و گوگل به تو می‌گوید <strong>این عکس قبلاً کجا منتشر شده و مربوط به چه زمانی است</strong>.</p>
+
+        <p style="margin-top:12px"><strong>عکس از کجا می‌آید؟</strong> از سه جا:</p>
+        <ul class="plain">
+          <li>عکسی که در یک خبر یا پست دیدی و می‌خواهی از آن استفاده کنی</li>
+          <li>عکسی که کسی برایت فرستاده و گفته «این مال فلان اتفاق است»</li>
+          <li>عکسی که خودت در اینترنت پیدا کردی</li>
+        </ul>
+
+        <p style="margin-top:12px"><strong>چرا این کار را می‌کنیم؟</strong> چون رایج‌ترین نوع خبر جعلی درباره‌ی افغانستان این است: یک عکس <em>واقعی</em>، ولی مال ده سال پیش یا مال کشور دیگری، که آن را به یک اتفاق تازه می‌چسبانند. اگر آن عکس را منتشر کنی، اعتبارت از بین می‌رود.</p>
+
+        <div class="tut">
+          <h5>چطور انجامش بدهی — روی گوشی</h5>
+          <ol class="taps">
+            <li>عکس را در گالری گوشی‌ات ذخیره کن.</li>
+            <li>اپ <strong>Google</strong> را باز کن (همان اپ جستجوی گوگل، نه مرورگر).</li>
+            <li>در کادر جستجو، سمت راست، آیکن <strong>دوربین</strong> (<span class="en">Lens</span>) را بزن.</li>
+            <li>عکس را از گالری انتخاب کن.</li>
+            <li>پایین صفحه، گزینه‌ای شبیه <span class="en">Find image source</span> یا «منابع» را بزن.</li>
+          </ol>
+        </div>
+
+        <p style="margin-top:12px"><strong>نتیجه را چطور بخوانی:</strong></p>
+        <ul class="plain">
+          <li><strong>اگر عکس در چند سایت با تاریخ‌های خیلی قدیمی آمده</strong> → عکس قدیمی است. برای خبر تازه استفاده نکن.</li>
+          <li><strong>اگر عکس در خبرهایی درباره‌ی کشور دیگری آمده</strong> → عکس مال افغانستان نیست. دور بریز.</li>
+          <li><strong>اگر هیچ نتیجه‌ای نیامد</strong> → یعنی عکس تازه است یا در اینترنت منتشر نشده. این خوب است، ولی هنوز نمی‌دانی کجاست — پس بدون منبع منتشرش نکن.</li>
+          <li><strong>اگر عکس را در یک سایت خبری معتبر با تاریخ نزدیک پیدا کردی</strong> → همان سایت، منبع توست. لینکش را نگه دار.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>۳ — وقتی منبع یا خبر را پیدا کردی، چه کار می‌کنی؟</h4>
+        <ol class="steps">
+          <li><strong>لینکش را ذخیره کن.</strong> در تلگرام برای خودت بفرست (بخش <span class="en">Saved Messages</span>) تا گم نشود.</li>
+          <li><strong>یک منبع دوم پیدا کن.</strong> قانون این است: هر خبر یا عددی باید در <strong>دو جای مستقل</strong> آمده باشد. اگر دو سایت هر دو از یک خبرگزاری نقل کرده‌اند، آن یک منبع است نه دو تا.</li>
+          <li><strong>در یک جمله بنویس چرا این سوژه الان مهم است.</strong> اگر نتوانستی این یک جمله را بنویسی، سوژه‌ی خوبی نیست.</li>
+          <li><strong>نگهش دار.</strong> از این سوژه‌ها در مرحله ۵ تصویر و در مرحله ۷ ویدیو می‌سازی. یعنی کار این مرحله دور ریخته نمی‌شود.</li>
+        </ol>
+      </div>
+
+      <div class="warn"><b>هوش مصنوعی منبع نیست.</b> Gemini می‌تواند به تو کمک کند بفهمی از کجا بگردی، ولی عدد و آماری که خودش می‌گوید ممکن است اشتباه باشد. هرگز عددی را که هوش مصنوعی داده مستقیم منتشر نکن — اول در یک سایت واقعی پیدایش کن.</div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>پنج سوژه پیدا کن. برای هرکدام بفرست: عنوان سوژه · یک جمله که چرا مهم است · دو لینک منبع · یک عکس که با جستجوی معکوس بررسی کرده‌ای و نتیجه‌اش چه شد.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> مدیر یکی از پنج سوژه را انتخاب می‌کند و لینک‌هایش را باز می‌کند. اگر لینک باز نشد یا آن حرف در آن صفحه نبود، مرحله تکرار می‌شود.</div>
+    </div>
+  </article>
+
+  <article class="week" data-order="3" data-id="w3">
+    <div class="week-head">
+      <button class="tick" data-tick="w3" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۳</span><span class="wtime">۳ تا ۶ ساعت</span></div>
+        <h3>جمله‌ی اول</h3>
+        <p class="week-goal">یاد بگیریم جمله‌ای بنویسیم که مخاطب را نگه دارد.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>ماجرا از چه قرار است</h4>
+        <p>وقتی کسی در فیسبوک یا تیک‌تاک اسکرول می‌کند، در حدود <strong>سه ثانیه</strong> تصمیم می‌گیرد بماند یا رد شود. یعنی جمله‌ی اولِ متن تو، یا سه ثانیه‌ی اولِ ویدیوی تو، از تمام باقی کار مهم‌تر است.</p>
+        <p style="margin-top:10px">به آن جمله‌ی اول می‌گوییم <span class="tw"><button class="term" type="button">قلاب</button><span class="def">جمله یا تصویری که در همان لحظه‌ی اول کنجکاوی مخاطب را برمی‌انگیزد و باعث می‌شود دستش روی صفحه بایستد. اسمش «قلاب» است چون کارش همین است — مثل قلاب ماهیگیری، مخاطب را می‌گیرد. یک قلاب خوب هیچ‌وقت خلاصه‌ی مطلب نیست؛ برعکس، چیزی را <em>ناتمام</em> می‌گذارد تا مخاطب مجبور شود ادامه بدهد.</span></span>.</p>
+      </div>
+
+      <div class="block">
+        <h4>شش راهِ ساختن قلاب — با نمونه</h4>
+        <p>برای هر سوژه‌ای می‌شود از این شش الگو استفاده کرد. نمونه‌ها همه درباره‌ی یک سوژه‌ی واحدند تا تفاوتشان معلوم شود:</p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>الگو</th><th>نمونه</th></tr></thead>
+            <tbody>
+              <tr><td>عدد غیرمنتظره</td><td>در ولایت بادغیس، از هر ده دختری که صنف ششم را تمام می‌کند، دو نفر به صنف هفتم می‌رسند.</td></tr>
+              <tr><td>سؤال بی‌جواب</td><td>اگر فردا صبح همه‌ی مکاتب باز شوند، چند نفر واقعاً برمی‌گردند؟</td></tr>
+              <tr><td>تضاد</td><td>تعداد مکاتب در این ولایت دو برابر شده. تعداد شاگردان، نصف.</td></tr>
+              <tr><td>شروع داستانی</td><td>زهرا هر روز صبح کتاب‌هایش را در کیف می‌گذاشت. سه سال است که کیف را باز نکرده.</td></tr>
+              <tr><td>تصور غلط رایج</td><td>فکر می‌کنیم مشکل نبودِ مکتب است. اما در بیشتر این ولایات، مکتب هست.</td></tr>
+              <tr><td>قبل و بعد</td><td>این عکس مالِ صنف نهم سال ۱۳۹۸ است. عکس بعدی، همان صنف، امسال.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>سه قانون قلاب خوب</h4>
+        <ul class="plain">
+          <li><strong>کوتاه.</strong> حداکثر ۱۲ کلمه. اگر بلندتر شد، در سه ثانیه خوانده نمی‌شود.</li>
+          <li><strong>مشخص، نه کلی.</strong> «وضعیت آموزش بد است» قلاب نیست. «از هر ده دختر، دو نفر» قلاب است. عدد، اسم مکان، و زمان مشخص، قلاب را قوی می‌کنند.</li>
+          <li><strong>راست.</strong> اگر برای جذاب‌تر شدن اغراق کنی و مخاطب بفهمد، دیگر برنمی‌گردد. قلاب باید کنجکاو کند، نه فریب بدهد.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>بعد از قلاب چه می‌آید؟ ساختار یک پست کامل</h4>
+        <div class="example">
+          <div class="example-h">پنج بخش، به همین ترتیب</div>
+          <div class="example-b">
+            <b>۱. قلاب</b> — یک جمله<br>
+            <b>۲. زمینه</b> — دو جمله که بگوید ماجرا چیست<br>
+            <b>۳. بدنه</b> — سه تا پنج نکته، یا یک داستان کوتاه<br>
+            <b>۴. نتیجه</b> — یک جمله که در ذهن بماند<br>
+            <b>۵. دعوت</b> — یک درخواست مشخص: «نظرت را بنویس»، «برای کسی بفرست که لازم دارد»
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>پرامپت کمکی</h4>
+        <div class="prompt">
+          <div class="prompt-head"><h5>ساخت هشت قلاب برای یک سوژه</h5><button class="copy">کپی</button></div>
+          <pre>تو متخصص نوشتن جمله‌ی اول برای شبکه‌های اجتماعی هستی.
+سوژه: [سوژه‌ات را اینجا بنویس]
+مخاطب: [کارت مخاطبت را اینجا خلاصه بنویس]
+
+هشت جمله‌ی اول بنویس، هرکدام حداکثر ۱۲ کلمه:
+دو تا با عدد غیرمنتظره، دو تا با سؤال، دو تا با تضاد، دو تا با شروع داستانی.
+
+قواعد:
+- فارسی افغانستان
+- هیچ اغراق دروغی نکن
+- بدون علامت تعجب
+- هر جمله باید به‌تنهایی معنا بدهد
+فقط فهرست را بده، بدون مقدمه.</pre>
+        </div>
+        <p style="margin-top:10px;font-size:13px;color:var(--muted)">جواب را عیناً استفاده نکن. بخوان، دو تای بهترش را انتخاب کن، و با کلمات خودت بازنویسی کن.</p>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>از پنج سوژه‌ی مرحله ۲، برای هرکدام دو قلاب بنویس (جمعاً ده تا). بعد برای یکی از آن‌ها یک پست کامل با هر پنج بخش بنویس.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> ده قلاب را بدون گفتن موضوع به یک نفر (هرکسی — خانواده، دوست) نشان بده و بپرس «کدام‌ها را کنجکاو شدی بخوانی؟» اگر کمتر از هفت تا را انتخاب کرد، دوباره بنویس.</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ PHASE 2 ============ -->
+<section class="phase">
+  <div class="phase-head">
+    <span class="phase-num">فاز ۲</span>
+    <h2>تصویر</h2>
+    <span class="phase-weeks">مرحله ۴ تا ۶</span>
+  </div>
+  <p class="phase-why">حالا می‌رسیم به ساختن. اول بدون هوش مصنوعی (مرحله ۴)، بعد با هوش مصنوعی (مرحله ۵)، آخر ترکیب هر دو (مرحله ۶). این ترتیب عمدی است: هوش مصنوعی به تو تصویر خام می‌دهد؛ اگر ندانی چطور آن را به یک پست تبدیل کنی، به دردت نمی‌خورد.</p>
+
+  <article class="week" data-order="4" data-id="w4">
+    <div class="week-head">
+      <button class="tick" data-tick="w4" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۴</span><span class="wtime">۵ تا ۱۰ ساعت</span></div>
+        <h3>ساختن پست با کانوا</h3>
+        <p class="week-goal">بتوانی پستی بسازی که حرفه‌ای دیده شود.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>۱ — اندازه‌ی درست</h4>
+        <p>هر شبکه‌ی اجتماعی اندازه‌ی خودش را دارد. اگر اندازه را اشتباه بگیری، پستت بریده یا کج دیده می‌شود. این چهار تا را حفظ کن:</p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>کجا</th><th>عرض × ارتفاع</th></tr></thead>
+            <tbody>
+              <tr><td>پست اینستاگرام و فیسبوک</td><td>۱۰۸۰ × ۱۳۵۰</td></tr>
+              <tr><td>استوری، ریلز، تیک‌تاک</td><td>۱۰۸۰ × ۱۹۲۰</td></tr>
+              <tr><td>تصویر برای تلگرام و ایکس</td><td>۱۶۰۰ × ۹۰۰</td></tr>
+              <tr><td>تصویر روی ویدیوی یوتیوب</td><td>۱۲۸۰ × ۷۲۰</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tut">
+        <h5>کانوا — از صفر تا خروجی <span>یک بار با دقت انجام بده</span></h5>
+        <ol class="taps">
+          <li>اپ را باز کن، دکمه‌ی <strong>+</strong> پایین وسط.</li>
+          <li><span class="en">Custom size</span> → عرض <strong>۱۰۸۰</strong>، ارتفاع <strong>۱۳۵۰</strong> → <span class="en">Create</span>.</li>
+          <li><strong>پس‌زمینه:</strong> از منوی پایین <span class="en">Elements</span> → بخش <span class="en">Shapes</span> → یک مستطیل انتخاب کن و با انگشت بزرگش کن تا کل صفحه را بگیرد. رنگش را از نوار پایین عوض کن.</li>
+          <li><strong>عکس:</strong> <span class="en">Uploads</span> → <span class="en">Upload files</span> → عکس را از گالری انتخاب کن → روی عکس بزن تا وارد صفحه شود.</li>
+          <li><strong>متن:</strong> <span class="en">Text</span> → <span class="en">Add a text box</span> → تایپ کن.</li>
+          <li><strong>اندازه و رنگ متن:</strong> روی متن بزن، از نوار پایین <span class="en">Font size</span> و <span class="en">Color</span>.</li>
+          <li><strong>خروجی:</strong> بالا سمت راست، آیکن دانلود → <span class="en">PNG</span> → <span class="en">Download</span>.</li>
+        </ol>
+      </div>
+
+      <div class="warn"><b>حتماً همین حالا تست کن:</b> یک متن فارسی در کانوا تایپ کن و نگاه کن. اگر حروف به هم چسبیده بودند («سلام») مشکلی نیست. اگر جدا از هم بودند («س ل ا م») یا برعکس چیده شده بودند، <strong>متن فارسی را در کانوا ننویس</strong> — طرح را در کانوا بساز، بدون متن خروجی بگیر، و متن را در پیکسل‌لب اضافه کن (آموزشش پایین‌تر).</div>
+
+      <div class="tut">
+        <h5>پیکسل‌لب — نوشتن متن فارسی روی تصویر</h5>
+        <ol class="taps">
+          <li>اپ <strong>PixelLab</strong> را باز کن → <strong>+</strong> → عکس را از گالری انتخاب کن.</li>
+          <li>روی متن نمونه‌ای که وسط عکس است بزن، و متن خودت را تایپ کن.</li>
+          <li>از نوار پایین: <span class="en">Font</span> برای فونت، <span class="en">Size</span> برای اندازه، <span class="en">Color</span> برای رنگ.</li>
+          <li>برای اینکه متن روی هر پس‌زمینه‌ای خوانا باشد: <span class="en">Stroke</span> (حاشیه) یا <span class="en">Shadow</span> (سایه) را روشن کن و رنگش را سیاه بگذار.</li>
+          <li>ذخیره: آیکن بالای صفحه.</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>۲ — پنج قانونی که کار را حرفه‌ای می‌کند</h4>
+        <ol class="steps">
+          <li><strong>یک پیام، نه دو تا.</strong> اگر دو حرف داری، دو پست بساز.</li>
+          <li><strong>متن باید از پس‌زمینه جدا باشد.</strong> امتحانش ساده است: چشمت را نیمه‌بسته کن و به طرح نگاه کن. اگر متن گم شد، رنگش را روشن‌تر یا پس‌زمینه‌اش را تیره‌تر کن.</li>
+          <li><strong>حاشیه را خالی بگذار.</strong> از هر طرف حدود یک بند انگشت فاصله بگذار و چیزی آنجا نگذار. شلوغی، بزرگ‌ترین نشانه‌ی کار آماتور است.</li>
+          <li><strong>حداکثر دو فونت.</strong> یکی برای تیتر، یکی برای بقیه.</li>
+          <li><strong>همه‌چیز روی یک خط.</strong> اگر متن‌ها از راست شروع می‌شوند، همه از راست. تراز نامرتب فوراً به چشم می‌آید.</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>۳ — کار عملی: سه پست که به هم بیایند</h4>
+        <p>می‌خواهیم سه پست بسازی که وقتی کنار هم گذاشته شوند، معلوم باشد کار یک نفر و مالِ یک برند است. برای این کار اول باید <span class="tw"><button class="term" type="button">هویت بصری</button><span class="def">یعنی مجموعه‌ی ثابتی از رنگ‌ها و فونت‌ها که در همه‌ی کارهایت تکرار می‌کنی. مثل لباس فرم است — وقتی مخاطب پست تو را می‌بیند، حتی قبل از خواندن اسم، از روی رنگ و شکلش می‌فهمد مال توست. بدون آن، هر پستت شبیه یک نفر دیگر می‌شود.</span></span> خودت را انتخاب کنی. یعنی فقط این چند چیز را یک بار انتخاب کن و بنویس:</p>
+        <ul class="plain">
+          <li><strong>سه رنگ:</strong> یک رنگ اصلی (بیشترین استفاده) · یک رنگ برای تأکید · یک رنگ خنثی مثل سفید یا خاکستری تیره برای متن.</li>
+          <li><strong>دو فونت:</strong> یکی برای تیتر (ضخیم‌تر)، یکی برای متن.</li>
+          <li><strong>جای لوگو:</strong> یک گوشه انتخاب کن و همیشه همان‌جا بگذار.</li>
+        </ul>
+        <p style="margin-top:11px">رنگ‌ها را چطور بنویسی و به مدیر بدهی؟ با <span class="tw"><button class="term" type="button">کد رنگ</button><span class="def">هر رنگ در اپ‌ها یک کد شش‌رقمی دارد که با علامت <span class="en">#</span> شروع می‌شود، مثل <span class="en">#1B4B8F</span>. این کد، آن رنگِ دقیق را مشخص می‌کند. فایده‌اش این است که وقتی می‌خواهی همان رنگ را فردا در اپ دیگری استفاده کنی، لازم نیست دنبال رنگ مشابه بگردی — کد را تایپ می‌کنی و دقیقاً همان رنگ می‌آید.<br><br><strong>کجا پیدایش کنی:</strong> در کانوا وقتی رنگی را انتخاب می‌کنی، بالای پنجره‌ی رنگ یک کد با <span class="en">#</span> نوشته شده. همان را یادداشت کن.</span></span>. سه کد رنگ را در تلگرام برای خودت بفرست تا هر بار در دسترس باشد.</p>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>یک پیام بفرست که سه کد رنگ و دو اسم فونت انتخابی‌ات در آن باشد + سه پست ۱۰۸۰×۱۳۵۰ که با همان رنگ‌ها و فونت‌ها ساخته شده باشند.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> سه پستت را کنار هم در گالری گوشی نگاه کن. اگر بدون دیدن اسم می‌شود فهمید هر سه مال یک نفرند، قبول است.</div>
+    </div>
+  </article>
+
+  <article class="week" data-order="5" data-id="w5">
+    <div class="week-head">
+      <button class="tick" data-tick="w5" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۵</span><span class="wtime">۵ تا ۱۰ ساعت</span></div>
+        <h3>ساختن تصویر با هوش مصنوعی</h3>
+        <p class="week-goal">بتوانی تصویری را که در ذهن داری، سفارش بدهی و بگیری.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>پرامپت یعنی چه</h4>
+        <p><span class="tw"><button class="term" type="button">پرامپت</button><span class="def">متنی که به هوش مصنوعی می‌دهی تا بر اساسش تصویر بسازد. مثل سفارش دادن به یک نقاش است که تو را نمی‌بیند: هرچه دقیق‌تر توضیح بدهی، نتیجه به آنچه در ذهنت هست نزدیک‌تر می‌شود. «یک معلم» سفارش بدی، هر چیزی ممکن است بگیری. دقیق سفارش بدهی، همان را می‌گیری.</span></span> فقط یعنی همان جمله‌ای که به هوش مصنوعی می‌دهی. کیفیت کار تو تقریباً تماماً به این بستگی دارد که پرامپت را چقدر دقیق بنویسی.</p>
+      </div>
+
+      <div class="block">
+        <h4>فرمول: هفت چیزی که باید بگویی</h4>
+        <div class="example">
+          <div class="example-h">هر پرامپت تصویر این هفت بخش را دارد</div>
+          <div class="example-b">
+            <b>۱. سوژه</b> — چه کسی یا چه چیزی در تصویر است<br>
+            <b>۲. کاری که می‌کند</b> — ایستاده، نشسته، می‌نویسد، نگاه می‌کند<br>
+            <b>۳. محیط</b> — کجاست: صنف درسی، بازار، خانه، بیرون<br>
+            <b>۴. سبک</b> — عکس واقعی؟ نقاشی؟ کاریکاتور؟<br>
+            <b>۵. نور</b> — نور طبیعی از پنجره، نور غروب، نور کم<br>
+            <b>۶. فاصله‌ی دوربین</b> — نمای نزدیک از صورت، نمای متوسط از کمر به بالا، نمای دور<br>
+            <b>۷. <span class="tw"><button class="term" type="button">نسبت تصویر</button><span class="def">یعنی شکل کلی تصویر: عمودی، مربع، یا افقی. آن را با دو عدد می‌نویسند، مثل <span class="en">4:5</span>. عدد اول عرض است و عدد دوم ارتفاع. پس <span class="en">4:5</span> یعنی تصویری که ارتفاعش کمی بیشتر از عرضش است — مناسب پست اینستاگرام.<br><br><b>کدام را کِی استفاده کنی:</b><br>• <span class="en">4:5</span> → پست اینستاگرام و فیسبوک<br>• <span class="en">9:16</span> → استوری، ریلز، تیک‌تاک (کاملاً عمودی)<br>• <span class="en">1:1</span> → مربع<br>• <span class="en">16:9</span> → افقی، برای یوتیوب و تلگرام<br><br>اگر نسبت را نگویی، معمولاً مربع تحویلت می‌دهد که برای بیشتر کارها به درد نمی‌خورد.</span></span></b>
+          </div>
+        </div>
+
+        <div class="example">
+          <div class="example-h">همان سوژه، دو جور نوشته شده</div>
+          <div class="example-b">
+            <b>ضعیف:</b> یک معلم افغان<br><br>
+            <b>قوی:</b> یک معلم زن با روسری آبی روشن، ایستاده کنار تخته‌سیاه، در صنف درسی ساده با دیوارهای کاهگلی، سبک عکس مستند واقعی، نور طبیعی از پنجره‌ی سمت راست، نمای متوسط از کمر به بالا، نسبت ۴:۵، بدون هیچ نوشته‌ای در تصویر
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>چهار سبکی که باید یاد بگیری</h4>
+        <p>سبک را می‌توانی به فارسی بنویسی، ولی این کلمه‌های انگلیسی نتیجه‌ی بهتری می‌دهند. آن‌ها را به آخر پرامپتت اضافه کن:</p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>سبک</th><th>این را به پرامپت اضافه کن</th></tr></thead>
+            <tbody>
+              <tr><td>عکس واقعی</td><td><span class="en">documentary photography, natural light, 50mm lens</span></td></tr>
+              <tr><td>تصویرسازی گرافیکی</td><td><span class="en">flat vector illustration, bold shapes, limited colors</span></td></tr>
+              <tr><td>کاریکاتور</td><td><span class="en">editorial cartoon, ink line art, exaggerated proportions</span></td></tr>
+              <tr><td>پوستر</td><td><span class="en">poster design, high contrast, minimal, negative space</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>کجا بسازی — به همین ترتیب امتحان کن</h4>
+        <ol class="steps">
+          <li><strong>Gemini</strong> — اول این. فارسی می‌فهمد، روی گوشی هست، و از همه مهم‌تر می‌تواند تصویری که قبلاً ساخته را <em>ویرایش</em> کند (کافی است بگویی «همین را نگه دار ولی رنگ لباس را سبز کن»).</li>
+          <li><strong>Microsoft Copilot</strong> — اگر سهمیه‌ی Gemini تمام شد.</li>
+          <li><strong>Leonardo</strong> و <strong>Krea</strong> — هر دو روزانه مقداری <span class="tw"><button class="term" type="button">اعتبار رایگان</button><span class="def">این سایت‌ها روزانه مقدار مشخصی تولید رایگان به تو می‌دهند — مثلاً ده تصویر در روز. به آن «اعتبار» یا <span class="en">credits</span> می‌گویند.<br><br><strong>نکته‌ی مهم:</strong> اعتبار استفاده‌نشده ذخیره نمی‌شود. اگر امروز از آن استفاده نکنی، فردا باز هم همان مقدار داری، نه دو برابر. پس عادت کن هر روز که کار داری، سهمیه‌ات را همان روز خرج کنی.</span></span> می‌دهند.</li>
+        </ol>
+      </div>
+
+      <div class="warn"><b>سه اشتباهی که همه اول کار می‌کنند:</b><br>
+      <strong>۱. دست‌ها.</strong> هوش مصنوعی هنوز در ساختن انگشت ضعیف است. یا کادر را طوری ببند که دست دیده نشود، یا به آخر پرامپت اضافه کن: <span class="en">hands not visible</span>.<br>
+      <strong>۲. متن فارسی داخل تصویر.</strong> نخواه که هوش مصنوعی فارسی بنویسد — حروف را خراب می‌کند. <strong>قانون ثابت: تصویر را بدون هیچ نوشته‌ای بساز، متن را بعداً در پیکسل‌لب اضافه کن.</strong> به آخر هر پرامپت اضافه کن: <span class="en">no text</span>.<br>
+      <strong>۳. صورت‌های تکراری.</strong> اگر همه‌ی آدم‌های تصاویرت شبیه هم شدند، در پرامپت جزئیات شخصی بنویس: سن تقریبی، حالت چهره، رنگ و مدل لباس.</div>
+
+      <div class="ethic"><b>سه قانونی که هرگز نباید بشکنی:</b><br>
+      • <strong>از یک اتفاق واقعی، تصویر نساز.</strong> اگر خبری واقعاً رخ داده، ساختن تصویر از آن با هوش مصنوعی یعنی جعل — حتی اگر نیت خوبی داشته باشی.<br>
+      • <strong>تصویری که شبیه عکس واقعی است را برچسب بزن.</strong> کافی است گوشه‌اش بنویسی «تصویرسازی».<br>
+      • <strong>چهره‌ی آدم‌های واقعی را بازسازی نکن</strong> و تصویری نساز که ممکن است کسی را در معرض خطر بگذارد.</div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>یکی از سوژه‌های مرحله ۲ را انتخاب کن و برای همان یک سوژه، چهار تصویر بساز — یکی در هر سبک. متن پرامپت هرکدام را هم کنارش بفرست.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> پرامپت‌هایت را به یک نفر دیگر بده و بگو با همان‌ها تصویر بسازد. اگر چیزی شبیه مال تو گرفت، یعنی پرامپت‌نویسی‌ات درست است و شانسی نبوده.</div>
+    </div>
+  </article>
+
+  <article class="week" data-order="6" data-id="w6">
+    <div class="week-head">
+      <button class="tick" data-tick="w6" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۶</span><span class="wtime">۵ تا ۱۰ ساعت</span><span class="wopt">🥉 پایان برنز</span></div>
+        <h3>از تصویر خام تا پست آماده</h3>
+        <p class="week-goal">تصویر هوش مصنوعی را به یک پوستر کامل با متن و لوگو تبدیل کنی.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>مسیر کار — پنج قدم، همیشه به همین ترتیب</h4>
+        <ol class="steps">
+          <li><strong>در Gemini تصویر را بساز</strong> — بدون هیچ نوشته‌ای.</li>
+          <li><strong>در گالری ذخیره‌اش کن.</strong></li>
+          <li><strong>اگر لازم بود، پس‌زمینه را عوض کن</strong> (روش پایین).</li>
+          <li><strong>در پیکسل‌لب متن فارسی را اضافه کن.</strong></li>
+          <li><strong>لوگو را بگذار و خروجی بگیر.</strong></li>
+        </ol>
+      </div>
+
+      <div class="tut">
+        <h5>جدا کردن سوژه از پس‌زمینه</h5>
+        <p style="font-size:13.5px;color:var(--ink-2);margin-bottom:10px">گاهی تصویری که ساخته‌ای سوژه‌اش خوب است ولی پس‌زمینه‌اش به درد نمی‌خورد. می‌شود سوژه را جدا کرد و روی پس‌زمینه‌ی خودت گذاشت. این کار باعث می‌شود کارت دیگر شبیه «تصویر هوش مصنوعی» به نظر نرسد.</p>
+        <ol class="taps">
+          <li>در کانوا، عکس را وارد صفحه کن و رویش بزن.</li>
+          <li>از نوار پایین <span class="en">Edit image</span> را بزن.</li>
+          <li><span class="en">BG Remover</span> را انتخاب کن و صبر کن.</li>
+          <li>حالا سوژه بدون پس‌زمینه است — می‌توانی روی هر رنگ یا عکس دیگری بگذاری‌اش.</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>کاریکاتور خبری</h4>
+        <p>کاریکاتور خوب یک <strong>تضاد</strong> را نشان می‌دهد، نه یک صحنه را. یعنی اول باید تصمیم بگیری چه چیزی را با چه چیزی مقایسه می‌کنی، بعد آن را به یک تصویر ترجمه کنی.</p>
+        <ol class="steps">
+          <li><strong>حرفت را در یک جمله بنویس.</strong> مثلاً: «مکتب هست، ولی راه رسیدن به آن بسته است.»</li>
+          <li><strong>یک تصویر برایش پیدا کن.</strong> مثلاً: دری که رویش قفل بزرگی است و پشتش صنف روشن دیده می‌شود.</li>
+          <li><strong>پرامپت بنویس</strong> — همان تصویر را توصیف کن و آخرش این را اضافه کن: <span class="en">editorial cartoon, ink line art, exaggerated proportions, white background, no text</span></li>
+          <li><strong>متن را بعداً اضافه کن</strong> در پیکسل‌لب.</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>لوگو و واترمارک</h4>
+        <div class="warn"><b>لوگو را تو نمی‌سازی.</b> لوگو یکی است برای کل تیم و مدیر آن را به تو می‌دهد. اگر هنوز نگرفته‌ای، از مدیر بخواه. هرکس لوگوی خودش را بسازد یعنی هر پست شبیه یک برند دیگر می‌شود — دقیقاً برعکس چیزی که می‌خواهیم.</div>
+
+        <p style="margin-top:14px">فایل لوگو باید <span class="tw"><button class="term" type="button">پس‌زمینه‌ی شفاف</button><span class="def">یعنی فایل تصویری که دور و اطراف لوگو خالی است، نه سفید. وقتی چنین لوگویی را روی یک عکس می‌گذاری، فقط خودِ لوگو دیده می‌شود.<br><br>اگر لوگو پس‌زمینه‌ی سفید داشته باشد، وقتی روی عکس بگذاری‌اش، یک مربع سفید زشت دور لوگو می‌افتد.<br><br><strong>چطور تشخیص بدهی:</strong> فایل‌های <span class="en">PNG</span> می‌توانند شفاف باشند، فایل‌های <span class="en">JPG</span> هرگز نمی‌توانند. اگر مدیر به تو فایل JPG داد، بگو نسخه‌ی PNG می‌خواهی.</span></span> داشته باشد.</p>
+
+        <p style="margin-top:12px">کجا بگذاری‌اش:</p>
+        <ul class="plain">
+          <li><strong>همیشه یک گوشه، همان گوشه در همه‌ی پست‌ها.</strong></li>
+          <li><strong>کمی از لبه فاصله بده</strong> — حدود یک بند انگشت. چسبیده به لبه، بد به نظر می‌رسد و گاهی بریده می‌شود.</li>
+          <li><strong>در اینستاگرام گوشه‌ی بالا-چپ امن‌ترین است</strong>، چون دکمه‌های خود اینستاگرام روی گوشه‌های دیگر می‌افتند.</li>
+        </ul>
+
+        <p style="margin-top:12px">اگر لوگو را روی خودِ عکس می‌گذاری و نمی‌خواهی خیلی توی چشم بزند، <span class="tw"><button class="term" type="button">شفافیتش</button><span class="def">«شفافیت» یعنی چقدر چیزی کم‌رنگ و نیمه‌محو باشد. آن را با درصد می‌سنجند:<br><br>• <strong>۱۰۰٪</strong> = کاملاً پررنگ و توپر، پشتش اصلاً دیده نمی‌شود<br>• <strong>۵۰٪</strong> = نیمه‌محو، هم خودش دیده می‌شود هم عکس پشتش<br>• <strong>۰٪</strong> = کاملاً نامرئی<br><br>برای لوگو روی عکس، چیزی بین <strong>۳۰ تا ۵۰ درصد</strong> خوب است: دیده می‌شود ولی جلوی دیدن عکس را نمی‌گیرد.<br><br><strong>کجا پیدایش کنی:</strong> در کانوا و پیکسل‌لب، وقتی لوگو را انتخاب کرده‌ای، در نوار پایین دنبال <span class="en">Transparency</span> یا <span class="en">Opacity</span> بگرد.</span></span> را کم کن.</p>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>دو فایل بفرست: یک <b>پوستر خبری</b> (تصویر هوش مصنوعی + متن فارسی + لوگو) و یک <b>کاریکاتور</b> با همان روش.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> پوستر را در گالری گوشی‌ات نگاه کن، در همان حالت کوچک که عکس‌ها کنار هم‌اند. اگر متن اصلی در آن اندازه‌ی کوچک خوانا بود، قبول است. اگر نه، فونت را بزرگ‌تر کن.</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ PHASE 3 ============ -->
+<section class="phase">
+  <div class="phase-head">
+    <span class="phase-num">فاز ۳</span>
+    <h2>ویدیو</h2>
+    <span class="phase-weeks">مرحله ۷ تا ۱۰</span>
+  </div>
+  <p class="phase-why">ویدیو بعد از تصویر می‌آید چون هر ویدیوی خوب از تصاویر خوب ساخته می‌شود. مرحله ۷ و ۸ ستون اصلی این کارند؛ مرحله ۹ و ۱۰ روی آن‌ها سوار می‌شوند.</p>
+
+  <article class="week" data-order="7" data-id="w7">
+    <div class="week-head">
+      <button class="tick" data-tick="w7" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۷</span><span class="wtime">۶ تا ۱۲ ساعت</span></div>
+        <h3>تدوین با کپ‌کات</h3>
+        <p class="week-goal">بتوانی از چند عکس، یک ویدیوی تمیز بسازی.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>اول با صفحه آشنا شو</h4>
+        <p>وقتی پروژه‌ای در کپ‌کات باز می‌کنی، صفحه سه بخش دارد:</p>
+        <ul class="plain">
+          <li><strong>بالا:</strong> پیش‌نمایش — همان چیزی که ویدیو خواهد شد.</li>
+          <li><strong>وسط، نوار افقی:</strong> <span class="tw"><button class="term" type="button">تایم‌لاین</button><span class="def">نوار افقی وسط صفحه که همه‌ی عکس‌ها و ویدیوهایت پشت سر هم رویش چیده شده‌اند. از چپ به راست، مسیر زمان است: هرچه جلوتر بروی، دیرتر در ویدیو پخش می‌شود.<br><br>یک خط عمودی سفید هم روی آن هست که به آن «نشانگر» می‌گویند. هر جای تایم‌لاین که نشانگر باشد، همان لحظه در پیش‌نمایش بالا نشان داده می‌شود. برای جابه‌جا کردنش، نوار را با انگشت به چپ و راست بکش.</span></span> — عکس‌ها و ویدیوها پشت سر هم.</li>
+          <li><strong>پایین:</strong> منوی ابزارها — بریدن، صدا، متن، و بقیه.</li>
+        </ul>
+      </div>
+
+      <div class="tut">
+        <h5>ساخت اولین ویدیو — قدم به قدم</h5>
+        <ol class="taps">
+          <li>اپ را باز کن → <span class="en">New project</span>.</li>
+          <li>پنج تا شش عکس انتخاب کن (از کارهای مرحله ۶) → <span class="en">Add</span>.</li>
+          <li><strong>نسبت تصویر را درست کن:</strong> از منوی پایین <span class="en">Ratio</span> → <strong>9:16</strong> (عمودی، برای ریلز و تیک‌تاک).</li>
+          <li><strong>مدت هر عکس:</strong> روی یک عکس در تایم‌لاین بزن تا دورش کادر سفید بیاید → از منوی پایین <span class="en">Duration</span> → روی <strong>۳ ثانیه</strong> بگذار. برای بقیه هم تکرار کن.</li>
+          <li><strong>موسیقی:</strong> نشانگر را به اول ببر → منوی پایین <span class="en">Audio</span> → <span class="en">Sounds</span> → یک آهنگ انتخاب کن → دکمه‌ی <strong>+</strong> کنارش.</li>
+          <li><strong>کوتاه کردن موسیقی:</strong> روی نوار سبز موسیقی بزن، لبه‌ی سمت راستش را با انگشت بکش تا هم‌اندازه‌ی ویدیو شود.</li>
+          <li><strong>متن:</strong> منوی پایین <span class="en">Text</span> → <span class="en">Add text</span> → تایپ کن → طول نوار متن را روی تایم‌لاین بکش تا مدت نمایشش مشخص شود.</li>
+          <li><strong>خروجی:</strong> بالا سمت راست، آیکن خروجی → <strong>1080p</strong> و <strong>30</strong> → <span class="en">Export</span>.</li>
+        </ol>
+      </div>
+
+      <div class="tut">
+        <h5>بریدن یک کلیپ</h5>
+        <ol class="taps">
+          <li>نوار تایم‌لاین را بکش تا خط سفید (نشانگر) دقیقاً روی جایی برسد که می‌خواهی ببری.</li>
+          <li>روی کلیپ بزن تا انتخاب شود.</li>
+          <li>از منوی پایین <span class="en">Split</span> را بزن — کلیپ دو تکه می‌شود.</li>
+          <li>تکه‌ی اضافی را انتخاب کن و <span class="en">Delete</span> بزن.</li>
+        </ol>
+      </div>
+
+      <div class="tut">
+        <h5>زنده کردن عکس ثابت — مهم‌ترین ترفند این مرحله</h5>
+        <p style="font-size:13.5px;color:var(--ink-2);margin-bottom:10px">یک اسلایدشو از عکس‌های ثابت، مرده به نظر می‌رسد. اگر روی هر عکس یک زوم آرام بگذاری، ویدیو ناگهان حرفه‌ای می‌شود. برای این کار از <span class="tw"><button class="term" type="button">کلیدفریم</button><span class="def">علامتی که در یک لحظه‌ی مشخص از ویدیو می‌گذاری و به اپ می‌گویی «در این لحظه، تصویر باید این شکلی باشد».<br><br>اگر دو کلیدفریم بگذاری — یکی اول کلیپ با تصویر کوچک، یکی آخر کلیپ با تصویر بزرگ‌تر — اپ خودش فاصله‌ی بین آن دو را پر می‌کند و یک زوم نرم می‌سازد. تو فقط دو نقطه را مشخص می‌کنی، حرکت را اپ می‌سازد.<br><br>آیکنش شکل یک <strong>لوزی یا الماس کوچک</strong> است.</span></span> استفاده می‌کنیم.</p>
+        <ol class="taps">
+          <li>روی عکس در تایم‌لاین بزن تا انتخاب شود.</li>
+          <li>نشانگر را دقیقاً به <strong>اول</strong> همان عکس ببر.</li>
+          <li>آیکن <strong>لوزی</strong> (کلیدفریم) را بزن — یک نقطه ثبت می‌شود.</li>
+          <li>حالا نشانگر را به <strong>آخر</strong> همان عکس ببر.</li>
+          <li>در پیش‌نمایش بالا، با دو انگشت عکس را کمی بزرگ کن (حدود ۱۰ تا ۱۵ درصد، نه بیشتر).</li>
+          <li>کپ‌کات خودش کلیدفریم دوم را می‌سازد. حالا پخش کن — عکس آرام زوم می‌شود.</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>چهار قانون ریتم</h4>
+        <ul class="plain">
+          <li><strong>هر دو تا سه ثانیه یک تغییر.</strong> یا عکس عوض شود، یا متن بیاید، یا زوم اتفاق بیفتد. اگر پنج ثانیه هیچ چیزی تغییر نکند، مخاطب رد می‌شود.</li>
+          <li><strong>سکوت‌ها را ببر.</strong> اگر صدای ضبط‌شده داری، هر جا مکث طولانی هست حذفش کن.</li>
+          <li><strong>ترنزیشن کم.</strong> <span class="tw"><button class="term" type="button">ترنزیشن</button><span class="def">افکتی که بین دو کلیپ اتفاق می‌افتد — مثلاً تصویر اول محو می‌شود و دومی می‌آید، یا از کنار سُر می‌خورد.<br><br>در کپ‌کات، بین هر دو کلیپ در تایم‌لاین یک مربع کوچک سفید هست؛ رویش بزنی، فهرست ترنزیشن‌ها باز می‌شود.<br><br><strong>مهم‌ترین نکته:</strong> کمترین استفاده، بهترین نتیجه. بیشترین اشتباه تازه‌کارها این است که برای هر برش یک ترنزیشن رنگارنگ می‌گذارند و کار شلوغ و آماتور می‌شود. در کل یک ویدیو، حداکثر <strong>دو نوع</strong> ترنزیشن استفاده کن — و بیشتر جاها اصلاً هیچ ترنزیشنی نگذار، چون برش خشک و ساده معمولاً بهتر است.</span></span> در کل ویدیو حداکثر دو نوع.</li>
+          <li><strong>صفحه‌ی آخر کپ‌کات را حذف کن.</strong> کپ‌کات به‌طور خودکار یک تکه با لوگوی خودش به آخر ویدیو اضافه می‌کند. در تایم‌لاین آخرش را نگاه کن، اگر بود انتخابش کن و <span class="en">Delete</span>.</li>
+        </ul>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>یک ویدیوی <b>۳۰ ثانیه‌ای عمودی</b> از عکس‌های مرحله ۶ بساز: با موسیقی، با زوم آرام روی هر عکس، و با حداقل سه متن روی تصویر.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> ویدیو را <strong>بدون صدا</strong> ببین. اگر باز هم فهمیدی حرفش چیست، قبول است — چون بیشتر مردم صدا را روشن نمی‌کنند.</div>
+    </div>
+  </article>
+
+  <article class="week" data-order="8" data-id="w8">
+    <div class="week-head">
+      <button class="tick" data-tick="w8" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۸</span><span class="wtime">۵ تا ۱۰ ساعت</span></div>
+        <h3>زیرنویس فارسی و لوگو روی ویدیو</h3>
+        <p class="week-goal">ویدیوی زیرنویس‌دار و برنددار بسازی.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="warn"><b>واقعیتی که باید بدانی:</b> زیرنویس خودکار کپ‌کات، فارسی را نمی‌شناسد. همچنین کپ‌کات <em>روی گوشی</em> نمی‌تواند فایل زیرنویس آماده وارد کند (فقط نسخه‌ی کامپیوتری این کار را می‌کند). پس زیرنویس را باید <strong>دستی تایپ کنی</strong> — ولی سخت‌ترین بخشش را هوش مصنوعی برایت انجام می‌دهد.</div>
+
+      <div class="block">
+        <h4>مسیر کار — سه قدم</h4>
+        <p>سخت‌ترین کار در زیرنویس این است که گوش بدهی و بنویسی. آن را Gemini انجام می‌دهد. تو فقط کپی می‌کنی و می‌چسبانی.</p>
+      </div>
+
+      <div class="tut">
+        <h5>قدم ۱ — متن را از Gemini بگیر</h5>
+        <ol class="taps">
+          <li>اپ <strong>Gemini</strong> را باز کن.</li>
+          <li>آیکن <strong>گیره یا +</strong> کنار کادر تایپ را بزن و <strong>فایل ویدیو</strong> را از گالری آپلود کن.</li>
+          <li>این پرامپت را بچسبان و بفرست:</li>
+        </ol>
+        <div class="prompt">
+          <div class="prompt-head"><h5>پیاده کردن صدا برای زیرنویس</h5><button class="copy">کپی</button></div>
+          <pre>صدای این ویدیو را کلمه‌به‌کلمه به فارسی پیاده کن.
+
+قواعد:
+- متن را به خطوط کوتاه بشکن، هر خط حداکثر ۸ کلمه
+- هر خط را در یک سطر جدا بنویس
+- شماره‌گذاری نکن، زمان ننویس
+- دقیقاً همان چیزی که گفته شده، بدون بازنویسی و بدون خلاصه کردن
+- هیچ توضیح اضافه‌ای ننویس، فقط خطوط متن</pre>
+        </div>
+        <ol class="taps" start="4" style="margin-top:12px">
+          <li>جواب را کپی کن و در تلگرام به <span class="en">Saved Messages</span> خودت بفرست — اینطوری موقع تایپ در کپ‌کات راحت کپی می‌کنی.</li>
+        </ol>
+      </div>
+
+      <div class="tut">
+        <h5>قدم ۲ — در کپ‌کات تایپ کن</h5>
+        <ol class="taps">
+          <li>پروژه را باز کن. نشانگر را به لحظه‌ای ببر که خط اول گفته می‌شود.</li>
+          <li>منوی پایین <span class="en">Text</span> → <span class="en">Add text</span>.</li>
+          <li>خط اول را از تلگرام کپی کن و اینجا بچسبان.</li>
+          <li><strong>خوانا کردن:</strong> فونت ضخیم انتخاب کن، و از بخش <span class="en">Style</span> گزینه‌ی حاشیه (<span class="en">Stroke</span>) یا سایه (<span class="en">Shadow</span>) را روشن کن و سیاه بگذار. بدون این، روی پس‌زمینه‌ی روشن دیده نمی‌شود.</li>
+          <li><strong>جای درست:</strong> متن را با انگشت به پایین صفحه ببر، ولی نه چسبیده به لبه — حدود یک بند انگشت بالاتر. دلیلش این است که دکمه‌های اینستاگرام و تیک‌تاک روی نوار پایین می‌افتند و متن را می‌پوشانند.</li>
+          <li>طول نوار متن را در تایم‌لاین بکش تا دقیقاً همان مدتی بماند که آن جمله گفته می‌شود.</li>
+        </ol>
+      </div>
+
+      <div class="tut">
+        <h5>قدم ۳ — بقیه‌ی خطوط را سریع بساز</h5>
+        <p style="font-size:13.5px;color:var(--ink-2);margin-bottom:10px">این ترفند وقتت را نصف می‌کند: به جای ساختن متن جدید (که باید دوباره فونت و رنگ و حاشیه‌اش را تنظیم کنی)، متن قبلی را کپی کن — استایلش حفظ می‌شود.</p>
+        <ol class="taps">
+          <li>روی نوار متنی که ساختی در تایم‌لاین بزن.</li>
+          <li>از منوی پایین <span class="en">Copy</span> را بزن — یک نسخه‌ی دوم ساخته می‌شود.</li>
+          <li>نسخه‌ی جدید را در تایم‌لاین بکش و به لحظه‌ی جمله‌ی بعدی ببر.</li>
+          <li>دو بار رویش بزن، متن قبلی را پاک کن و خط بعدی را بچسبان.</li>
+          <li>همین را تا آخر تکرار کن.</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>چهار قانون زیرنویس</h4>
+        <ul class="plain">
+          <li><strong>حداکثر دو خط</strong> در هر لحظه. بیشتر از این خوانده نمی‌شود.</li>
+          <li><strong>هر زیرنویس بین ۱ تا ۶ ثانیه</strong> روی صفحه بماند. کمتر از یک ثانیه فرصت خواندن نیست.</li>
+          <li><strong>حاشیه‌ی پایین را رعایت کن</strong> — یک بند انگشت بالاتر از لبه.</li>
+          <li><strong>زیرنویس بازنویسی نیست.</strong> دقیقاً همان چیزی که گفته شده، حتی اگر جمله ناقص باشد.</li>
+        </ul>
+      </div>
+
+      <div class="tut">
+        <h5>گذاشتن لوگو روی کل ویدیو</h5>
+        <ol class="taps">
+          <li>نشانگر را به اول ویدیو ببر.</li>
+          <li>منوی پایین <span class="en">Overlay</span> → <span class="en">Add overlay</span>.</li>
+          <li>فایل PNG لوگو را از گالری انتخاب کن.</li>
+          <li>در پیش‌نمایش بالا، با دو انگشت کوچکش کن و به گوشه ببرش.</li>
+          <li>طول نوار لوگو در تایم‌لاین را بکش تا آخر ویدیو.</li>
+          <li>لوگو را انتخاب کن → از منوی پایین <span class="en">Opacity</span> → روی حدود <strong>۴۰ درصد</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>دو ویدیو بفرست: ویدیوی مرحله ۷ با لوگوی ثابت اضافه‌شده · و یک ویدیوی جدید <b>۴۵ ثانیه‌ای</b> که در آن کسی حرف می‌زند (خودت یا هرکس) و زیرنویس فارسی کامل دارد.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> ویدیو را روی گوشی، بدون صدا، و اگر می‌شود بیرون در نور آفتاب ببین. اگر زیرنویس خوانا بود، قبول است.</div>
+    </div>
+  </article>
+
+  <article class="week" data-order="9" data-id="w9">
+    <div class="week-head">
+      <button class="tick" data-tick="w9" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۹</span><span class="wtime">۵ تا ۱۰ ساعت</span><span class="wopt">🥈 پایان نقره</span></div>
+        <h3>ویدیو ساختن با هوش مصنوعی</h3>
+        <p class="week-goal">از یک عکس ثابت، ویدیوی متحرک بسازی.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="warn"><b>قانون اول:</b> همیشه اول تصویر بساز، بعد متحرکش کن. تصویر ساختن ارزان است و می‌توانی ده بار تکرار کنی؛ ویدیو ساختن سهمیه‌ی زیادی می‌سوزاند. هیچ‌وقت مستقیم از متن، ویدیو نخواه.</div>
+
+      <div class="block">
+        <h4>کجا بسازی</h4>
+        <p>این‌ها سهمیه‌ی رایگان دارند و با ایمیل ثبت‌نام می‌شوند. اگر جایی کارت بانکی خواست، همان‌جا ببند و برو سراغ بعدی:</p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>اسم</th><th>نکته</th></tr></thead>
+            <tbody>
+              <tr><td>Kling AI</td><td>سهمیه‌ی رایگان روزانه، کلیپ ۵ ثانیه‌ای، واترمارک دارد</td></tr>
+              <tr><td>Hailuo (MiniMax)</td><td>رایگان با صف انتظار، معمولاً بدون واترمارک</td></tr>
+              <tr><td>Dreamina</td><td>از سازنده‌ی کپ‌کات، سهمیه‌ی رایگان</td></tr>
+              <tr><td>Vidu</td><td>سهمیه‌ی رایگان، برای سبک کارتونی خوب است</td></tr>
+              <tr><td>Pika</td><td>سهمیه‌ی رایگان محدود</td></tr>
+              <tr><td>Luma Dream Machine</td><td>سهمیه‌ی رایگان محدود، حرکت طبیعی</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>وقتی این‌ها دیگر رایگان نبودند، چطور جایگزین پیدا کنی</h4>
+        <p>سهمیه‌های رایگان مدام عوض می‌شوند. برای همین روش پیدا کردن، از فهرست بالا مهم‌تر است:</p>
+        <ol class="steps">
+          <li><strong>در گوگل این را جستجو کن:</strong> <span class="en">free AI video generator daily free credits 2026</span> — سال را به سال جاری عوض کن.</li>
+          <li><strong>یا این:</strong> <span class="en">best free image to video AI no credit card</span></li>
+          <li><strong>قبل از ثبت‌نام، این چهار چیز را چک کن:</strong> بدون کارت بانکی ثبت‌نام می‌شود؟ · سهمیه‌اش روزانه است یا فقط یک بار؟ · واترمارک می‌گذارد؟ · کلیپ چند ثانیه می‌دهد؟</li>
+          <li><strong>هر ابزار خوبی که پیدا کردی، در گروه تیم بفرست</strong> تا بقیه هم استفاده کنند.</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>پرامپت ویدیو با پرامپت تصویر فرق دارد</h4>
+        <p>در پرامپت تصویر، <strong>ظاهر</strong> را توصیف می‌کنی. در پرامپت ویدیو، ظاهر از خودِ عکس می‌آید — تو فقط <strong>حرکت</strong> را توصیف می‌کنی. سه چیز بگو: دوربین چطور حرکت کند · سوژه چه کار کند · چه چیزی نباید عوض شود.</p>
+
+        <p style="margin-top:12px">این هشت پرامپت آماده را برای کارهای مختلف استفاده کن:</p>
+
+        <div class="prompt">
+          <div class="prompt-head"><h5>۱ — زنده کردن یک عکس پرتره</h5><button class="copy">کپی</button></div>
+          <pre class="enblock">static camera, very subtle motion only: hair sways slightly,
+fabric moves gently, eyes blink naturally once.
+Everything else stays completely still.
+Photorealistic, no morphing, no distortion.</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head"><h5>۲ — نزدیک شدن آرام دوربین</h5><button class="copy">کپی</button></div>
+          <pre class="enblock">slow dolly in toward the subject, steady and smooth.
+Subject stays still. Face and clothing unchanged.
+Cinematic, natural motion.</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head"><h5>۳ — نگاه کردن به اطراف (منظره)</h5><button class="copy">کپی</button></div>
+          <pre class="enblock">slow pan from left to right across the scene,
+steady camera, natural daylight, no people moving.
+Keep all colors and details unchanged.</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head"><h5>۴ — سوژه سرش را بالا می‌آورد</h5><button class="copy">کپی</button></div>
+          <pre class="enblock">static camera. The person slowly lifts their head
+and looks toward the camera, then gives a small calm expression.
+Face features, clothing and background remain exactly the same.</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head"><h5>۵ — راه رفتن</h5><button class="copy">کپی</button></div>
+          <pre class="enblock">the person walks slowly forward, natural walking motion,
+camera follows at the same speed, steady shot.
+Keep face, clothing and lighting consistent.</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head"><h5>۶ — چرخیدن دور سوژه</h5><button class="copy">کپی</button></div>
+          <pre class="enblock">camera orbits slowly around the subject from left to right,
+subject remains still in the center.
+Smooth cinematic movement, no warping of the face.</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head"><h5>۷ — بالا رفتن دوربین (برای نشان دادن بزرگی)</h5><button class="copy">کپی</button></div>
+          <pre class="enblock">camera slowly tilts up from the ground to reveal the full scene,
+steady and smooth, natural daylight.
+No change to the subject or colors.</pre>
+        </div>
+
+        <div class="prompt">
+          <div class="prompt-head"><h5>۸ — سبک کارتونی</h5><button class="copy">کپی</button></div>
+          <pre class="enblock">2D cartoon animation, gentle looping motion,
+character blinks and moves slightly, background stays still.
+Keep the exact art style, colors and outlines of the source image.</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>مشکل ۵ ثانیه و راه‌حلش</h4>
+        <p>ابزارهای رایگان معمولاً فقط کلیپ ۵ ثانیه‌ای می‌دهند. برای ساختن ویدیوی ۳۰ ثانیه‌ای:</p>
+        <ol class="steps">
+          <li><strong>شش لحظه‌ی مختلف از داستانت را تصور کن</strong> و برای هرکدام یک تصویر بساز (مرحله ۵).</li>
+          <li><strong>هر تصویر را جداگانه به کلیپ ۵ ثانیه‌ای تبدیل کن</strong> با یکی از پرامپت‌های بالا.</li>
+          <li><strong>هر شش کلیپ را در کپ‌کات پشت سر هم بگذار</strong> و با موسیقی و زیرنویس یکپارچه کن.</li>
+          <li><strong>ترفند چسبیدن صحنه‌ها:</strong> از فریم آخر یک کلیپ اسکرین‌شات بگیر و همان را ورودیِ کلیپ بعدی کن. اینطوری صحنه‌ها به هم می‌چسبند و ویدیو تکه‌تکه به نظر نمی‌رسد.</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>واترمارک ابزار رایگان را چطور برداری</h4>
+        <p>دو راه، هر دو در کپ‌کات:</p>
+        <ul class="plain">
+          <li><strong>برش لبه:</strong> کلیپ را انتخاب کن → <span class="en">Crop</span> → آن قسمت از تصویر را که واترمارک رویش است بِبُر. کمی از تصویر کم می‌شود ولی تمیزترین راه است.</li>
+          <li><strong>پوشاندن:</strong> یک نوار یا شکل رنگی از <span class="en">Overlay</span> روی واترمارک بگذار — یا خودِ لوگوی تیم را همان‌جا بگذار.</li>
+        </ul>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>یک کلیپ <b>۲۰ تا ۳۰ ثانیه‌ای</b> که کاملاً با هوش مصنوعی ساخته شده، درباره‌ی یکی از سوژه‌های مرحله ۲، با موسیقی و زیرنویس.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> ویدیو را ببین و ببین آیا می‌توانی بگویی کلیپ‌ها از کجا به هم وصل شده‌اند. اگر پرش‌ها توی چشم می‌زنند، تصاویر را نزدیک‌تر به هم بساز و دوباره امتحان کن.</div>
+    </div>
+  </article>
+
+  <article class="week" data-order="10" data-id="w10">
+    <div class="week-head">
+      <button class="tick" data-tick="w10" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۱۰</span><span class="wtime">۶ تا ۱۲ ساعت</span><span class="wopt">اختیاری</span></div>
+        <h3>کارتون و صداگذاری</h3>
+        <p class="week-goal">ساختن ویدیوی کارتونی با یک شخصیت ثابت.</p>
+      </div>
+    </div>
+    <div class="week-body">
+      <div class="warn"><b>این مرحله اختیاری است.</b> اگر کار روزمره‌ات کارتون لازم ندارد، می‌توانی تیکش را بزنی و مستقیم به مرحله ۱۱ بروی. اگر علاقه داری یا مدیر خواست، انجامش بده.</div>
+
+      <div class="block">
+        <h4>شخصیت ثابت — سخت‌ترین بخش</h4>
+        <p>مشکل اصلی این است که هوش مصنوعی هر بار صورت را کمی فرق می‌سازد و شخصیتت در هر صحنه شبیه یک نفر دیگر می‌شود. راه‌حل:</p>
+        <ol class="steps">
+          <li><strong>یک تصویر مرجع بساز</strong> با جزئیات خیلی دقیق: سن، رنگ و مدل لباس، مدل مو، رنگ چشم. آن پرامپت را ذخیره کن.</li>
+          <li><strong>برای صحنه‌های بعدی، همان تصویر را در Gemini آپلود کن</strong> و بنویس: «همین شخصیت را در این صحنه نشان بده: [توضیح صحنه]. چهره، لباس، رنگ‌ها و سبک تصویرسازی دقیقاً ثابت بماند.»</li>
+          <li><strong>یک امضای سبک ثابت</strong> به آخر همه‌ی پرامپت‌ها اضافه کن تا همه‌ی تصاویر یک‌جور شوند: <span class="en">2D cartoon, soft rounded shapes, warm colors, thick outlines</span></li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>صدا</h4>
+        <ul class="plain">
+          <li><strong>بهترین راه: صدای خودت را ضبط کن.</strong> رایگان است و طبیعی‌تر از هر ابزاری. در اتاق کوچک با پرده و فرش ضبط کن (پژواک کمتر می‌شود). بعد در کپ‌کات صدا را انتخاب کن و <span class="en">Reduce noise</span> را روشن کن.</li>
+          <li><strong>اگر نمی‌خواهی صدایت باشد:</strong> ElevenLabs سهمیه‌ی رایگان دارد و متن فارسی را به صدا تبدیل می‌کند.</li>
+          <li><strong>موسیقی:</strong> فقط از کتابخانه‌ی خود کپ‌کات یا <span class="en">YouTube Audio Library</span>. صدای موسیقی زیر حرف زدن باید حدود ۲۰ درصد باشد، وگرنه صدا را می‌پوشاند.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h4>مشکل هماهنگی لب و صدا</h4>
+        <p>هماهنگ کردن دقیق حرکت لب با صدا، با ابزار رایگان تقریباً غیرممکن است. راه حرفه‌ای دور زدنش: در لحظه‌ای که شخصیت حرف می‌زند، دوربین را روی چیز دیگری ببر — دستش، شیء مقابلش، یا نمای دور — و صدا را ادامه بده. این یک تکنیک واقعی انیمیشن است، نه تقلب.</p>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>یک ویدیوی کارتونی <b>۳۰ تا ۴۵ ثانیه‌ای</b> با یک شخصیت که در همه‌ی صحنه‌ها یک نفر به نظر برسد، با صدای فارسی و زیرنویس.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> صحنه‌ها را کنار هم ببین. اگر شخصیت در همه یک نفر است، قبول.</div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ PHASE 4 ============ -->
+<section class="phase">
+  <div class="phase-head">
+    <span class="phase-num">فاز ۴</span>
+    <h2>سریع‌تر و منظم‌تر</h2>
+    <span class="phase-weeks">مرحله ۱۱ و ۱۲</span>
+  </div>
+  <p class="phase-why">تا اینجا ساختن را یاد گرفته‌ای. این دو مرحله درباره‌ی این است که هر بار از صفر شروع نکنی و کارت قابل پیش‌بینی شود.</p>
+
+  <article class="week" data-order="11" data-id="w11">
+    <div class="week-head">
+      <button class="tick" data-tick="w11" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۱۱</span><span class="wtime">۴ تا ۸ ساعت</span></div>
+        <h3>حرفه‌ای شدن در کار با هوش مصنوعی</h3>
+        <p class="week-goal">جواب‌های خیلی بهتر بگیری، با وقت کمتر.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>دوازده ترفند — از ساده به پیشرفته</h4>
+        <ol class="steps">
+          <li><strong>نقش بده.</strong> جمله‌ات را با این شروع کن: «تو یک سردبیر با ۱۵ سال تجربه در رسانه‌های افغانستان هستی.» همین یک جمله کیفیت جواب را به‌طور محسوس بالا می‌برد.</li>
+          <li><strong>مخاطب را بگو.</strong> «این را برای زن ۳۰ ساله‌ی خانه‌دار در هرات بنویس» جواب کاملاً متفاوتی می‌دهد با «این را بنویس».</li>
+          <li><strong>فرمت خروجی را بخواه.</strong> «در جدول با سه ستون» یا «فقط پنج خط، بدون مقدمه». اگر نگویی، معمولاً یک متن طولانی و بی‌استفاده تحویلت می‌دهد.</li>
+          <li><strong>نمونه بده.</strong> یکی از کارهای خوب قبلی‌ات را بچسبان و بگو «به این سبک بنویس». این مؤثرترین ترفند کل فهرست است.</li>
+          <li><strong>نمونه‌ی بد هم بده.</strong> «این‌طور ننویس: [نمونه]» به اندازه‌ی نمونه‌ی خوب کمک می‌کند.</li>
+          <li><strong>اصلاح کن، از نو نپرس.</strong> به جای نوشتن دوباره‌ی کل پرامپت، بگو: «همین را نگه دار، فقط جمله‌ی دوم را کوتاه‌تر کن.» دو سه بار اصلاح، فاصله‌ی کار آماتور و حرفه‌ای است.</li>
+          <li><strong>چند نسخه بخواه، بعد داوری.</strong> «پنج نسخه بنویس، بعد بگو کدام بهتر است و چرا.» خودش نقد می‌کند و تو از نقدش یاد می‌گیری.</li>
+          <li><strong>بگذار اول از تو سؤال بپرسد.</strong> «قبل از اینکه جواب بدهی، سه سؤال از من بپرس که جوابت را دقیق‌تر کند.» برای کارهای پیچیده فوق‌العاده است.</li>
+          <li><strong>اجازه بده بگوید نمی‌داند.</strong> «اگر مطمئن نیستی، بنویس نمی‌دانم — حدس نزن.» این جلوی ساختن آمار الکی را می‌گیرد.</li>
+          <li><strong>زنجیره‌ای کار کن.</strong> خروجی یک مرحله را ورودی مرحله‌ی بعد کن: اول سوژه بگیر، بعد از همان جواب قلاب بخواه، بعد از قلاب متن، بعد از متن پرامپت تصویر.</li>
+          <li><strong>محدودیت بگذار.</strong> «حداکثر ۱۰۰ کلمه» یا «هر جمله زیر ۱۲ کلمه». محدودیت، نوشته را قوی‌تر می‌کند.</li>
+          <li><strong>پرامپت موفق را همان لحظه ذخیره کن.</strong> فوراً در <span class="en">Saved Messages</span> تلگرام بفرست. وگرنه فردا یادت نمی‌آید چطور آن جواب خوب را گرفتی.</li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h4>«پرامپت مادر» بساز</h4>
+        <p>به جای اینکه هر بار از اول بنویسی، برای هر نوع کاری که مرتب انجام می‌دهی یک پرامپت آماده با جای خالی داشته باش. مثال:</p>
+        <div class="prompt">
+          <div class="prompt-head"><h5>نمونه‌ی پرامپت مادر برای نوشتن پست</h5><button class="copy">کپی</button></div>
+          <pre>تو یک سردبیر با تجربه در رسانه‌های افغانستان هستی.
+
+سوژه: [اینجا]
+مخاطب: [اینجا]
+پلتفرم: [اینجا]
+منبع: [لینک یا خلاصه]
+
+یک پست بنویس با این ساختار:
+جمله‌ی اول کنجکاوکننده (حداکثر ۱۲ کلمه) / دو جمله زمینه /
+سه نکته / یک جمله‌ی پایانی / یک دعوت مشخص
+
+قواعد:
+- فارسی افغانستان، ساده و گفتاری
+- هیچ عدد یا ادعایی که در منبع نیست ننویس
+- بدون علامت تعجب
+- اگر جایی از منبع مطمئن نیستی، علامت بزن</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>پرامپت‌های کنترل کیفیت</h4>
+        <div class="prompt">
+          <div class="prompt-head"><h5>نقد سخت‌گیرانه‌ی کار خودت</h5><button class="copy">کپی</button></div>
+          <pre>تو یک سردبیر سخت‌گیر هستی. این محتوا را نقد کن:
+[متن یا توضیح تصویر]
+
+در سه بخش:
+۱) حداکثر سه چیزی که خوب است
+۲) سه مشکل مشخص، به ترتیب اهمیت
+۳) یک تغییر که بیشترین اثر را دارد
+
+تعارف نکن، کلی‌گویی نکن. هر ایراد را با ارجاع
+به بخش مشخصی از متن بگو.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><h5>پیدا کردن ادعاهای بی‌منبع</h5><button class="copy">کپی</button></div>
+          <pre>این متن را بخوان و فهرست همه‌ی ادعاهای خبری و آماری‌اش را بیرون بکش.
+برای هر ادعا بنویس: منبع دارد یا نه، و اگر ندارد چه نوع منبعی لازم است.
+هیچ ادعای جدیدی اضافه نکن و هیچ عددی از خودت نساز.
+[متن]</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><h5>بررسی واژه‌های ایرانی</h5><button class="copy">کپی</button></div>
+          <pre>این متن را بررسی کن و هر واژه‌ای که مخصوص فارسی ایران است و
+در افغانستان استفاده نمی‌شود پیدا کن. برای هرکدام معادل افغانستانی بنویس.
+خروجی: جدول با دو ستون «واژه‌ی متن» و «معادل افغانستانی».
+[متن]</pre>
+        </div>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>ده پرامپت شخصی خودت بنویس و تست کن (نه کپی از اینجا — پرامپت‌هایی که برای کار خودت ساخته‌ای). آن‌ها را در یک پیام جمع کن و بفرست.</p></div>
+      <div class="gate"><b>معیار قبولی:</b> یکی از پرامپت‌هایت را دو بار در دو روز مختلف اجرا کن. اگر هر دو بار جواب قابل استفاده داد، پرامپت خوبی است.</div>
+    </div>
+  </article>
+
+  <article class="week" data-order="12" data-id="w12">
+    <div class="week-head">
+      <button class="tick" data-tick="w12" aria-pressed="false" aria-label="تمام شد">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="week-title">
+        <div class="week-kicker"><span class="wnum">مرحله ۱۲</span><span class="wtime">۴ تا ۸ ساعت</span><span class="wopt">🥇 پایان طلا</span></div>
+        <h3>منظم و سریع کار کردن</h3>
+        <p class="week-goal">دیگر هر روز دنبال ایده نگردی.</p>
+      </div>
+    </div>
+    <div class="week-body">
+
+      <div class="block">
+        <h4>روزها را بر اساس نوع کار تقسیم کن</h4>
+        <p>بزرگ‌ترین اتلاف وقت این است که هر روز یک محتوا را از اول تا آخر بسازی. هر بار که بین اپ‌ها جابه‌جا می‌شوی، ذهنت باید از نو گرم شود. به جایش:</p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>روز</th><th>فقط این کار</th></tr></thead>
+            <tbody>
+              <tr><td>روز ۱</td><td>سوژه پیدا کردن و منبع چک کردن — برای کل هفته</td></tr>
+              <tr><td>روز ۲</td><td>نوشتن همه‌ی متن‌ها و قلاب‌ها</td></tr>
+              <tr><td>روز ۳</td><td>ساختن همه‌ی تصاویر</td></tr>
+              <tr><td>روز ۴</td><td>تدوین همه‌ی ویدیوها</td></tr>
+              <tr><td>روز ۵</td><td>زیرنویس، لوگو، خروجی نهایی</td></tr>
+              <tr><td>روز ۶</td><td>انتشار و جواب دادن به کامنت‌ها</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:11px">این تقسیم‌بندی معمولاً سرعت تولید را تا دو برابر بالا می‌برد.</p>
+      </div>
+
+      <div class="block">
+        <h4>تقویم محتوا</h4>
+        <p>یک جدول ساده که چهار هفته جلوتر را نشان بدهد. می‌توانی در تلگرام یا در یک دفتر بنویسی — پیچیده‌اش نکن:</p>
+        <div class="scroller">
+          <table>
+            <thead><tr><th>تاریخ</th><th>سوژه</th><th>نوع</th><th>کجا منتشر شود</th><th>وضعیت</th></tr></thead>
+            <tbody>
+              <tr><td>۲۵ سنبله</td><td>بازگشایی مکاتب</td><td>پوستر</td><td>فیسبوک، ایکس</td><td>آماده</td></tr>
+              <tr><td>۲۷ سنبله</td><td>آمار سواد</td><td>ریلز</td><td>اینستاگرام، تیک‌تاک</td><td>در حال ساخت</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="chips">
+          <span class="chip"><b>۴۰٪</b> آموزشی و اطلاع‌رسانی</span>
+          <span class="chip"><b>۳۰٪</b> خبری و تحلیلی</span>
+          <span class="chip"><b>۲۰٪</b> روایت انسانی</span>
+          <span class="chip"><b>۱۰٪</b> سؤال و نظرسنجی</span>
+        </div>
+      </div>
+
+      <div class="block">
+        <h4>فقط سه عدد را نگاه کن</h4>
+        <ol class="steps">
+          <li><strong>چند درصد ویدیو را تا آخر دیدند.</strong> اگر افت شدید در ثانیه‌ی سوم دارد، مشکل از جمله‌ی اول است، نه از کیفیت ویدیو.</li>
+          <li><strong>چند نفر ذخیره یا ارسال کردند.</strong> مهم‌ترین علامت. یعنی محتوا واقعاً به درد خورده.</li>
+          <li><strong>چند کامنت.</strong> یک کامنت واقعی از صد لایک باارزش‌تر است.</li>
+        </ol>
+        <p style="margin-top:11px">هر هفته بهترین و بدترین محتوای هفته را انتخاب کن و در یک جمله بنویس چرا. همین یک عادت، در سه ماه کارت را متحول می‌کند.</p>
+      </div>
+
+      <div class="deliver"><span class="tag">کار این مرحله</span><p>یک تقویم چهار هفته‌ای پرشده + <b>هفت محتوای کاملاً آماده</b> که هنوز منتشر نشده‌اند (یعنی یک هفته جلوتر از انتشار باشی).</p></div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ FINAL ============ -->
+<section class="phase">
+  <div class="phase-head">
+    <span class="phase-num">پایان</span>
+    <h2>چک‌لیست همیشگی</h2>
+  </div>
+  <p class="phase-why">از مرحله ۶ به بعد، قبل از فرستادن هر کاری این ده بند را چک کن. آن را در تلگرام برای خودت بفرست تا همیشه دم دست باشد.</p>
+
+  <div class="week" style="margin-top:16px">
+    <div class="week-body" style="padding-top:18px">
+      <div class="block" style="margin-top:0">
+        <h4>محتوا</h4>
+        <ul class="plain">
+          <li>هر عدد یا خبری که نوشته‌ام، <strong>دو منبع مستقل</strong> دارد.</li>
+          <li>هیچ آماری که هوش مصنوعی گفته را بدون تأیید منبع ننوشته‌ام.</li>
+          <li>اگر عکس واقعی استفاده کرده‌ام، <strong>جستجوی معکوس</strong> کرده‌ام و تاریخ و مکانش را می‌دانم.</li>
+          <li>واژه‌های ایرانی را چک کرده‌ام و به معادل افغانستانی تبدیل کرده‌ام.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>ظاهر</h4>
+        <ul class="plain">
+          <li>اندازه‌ی فایل برای جایی که منتشر می‌شود درست است.</li>
+          <li>متن را در حالت کوچک روی گوشی نگاه کرده‌ام و خوانا بود.</li>
+          <li>حروف فارسی به هم چسبیده‌اند، نه جدا از هم.</li>
+          <li>لوگو سر جای همیشگی‌اش است و روی چیز مهمی نیفتاده.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>ویدیو</h4>
+        <ul class="plain">
+          <li>سه ثانیه‌ی اول را بدون صدا دیده‌ام و قابل فهم بود.</li>
+          <li>زیرنویس خواناست و یک بند انگشت بالاتر از لبه‌ی پایین است.</li>
+        </ul>
+      </div>
+      <div class="ethic"><b>و همیشه:</b> اگر تصویر یا ویدیویی ساخته‌ام که شبیه صحنه‌ی واقعی است، برچسب «تصویرسازی» رویش گذاشته‌ام · چهره‌ی هیچ آدم واقعی را بازسازی نکرده‌ام · و مطمئنم انتشار این محتوا کسی را در معرض خطر نمی‌گذارد.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>مسیر محتوای افغانستان — نسخه ۲</span>
+  <span>پیشرفتت با اسمی که بالا نوشتی ذخیره می‌شود.</span>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var IDS = ["w0","w1","w2","w3","w4","w5","w6","w7","w8","w9","w10","w11","w12"];
+  var TOTAL = IDS.length;
+  var LS_DONE = "masir.done.v1", LS_NAME = "masir.name.v1", LS_MGR = "masir.mgr.v1";
+
+  var done = {}, myName = "", mgr = false;
+
+  var ringArc = document.getElementById("ringArc");
+  var ringTxt = document.getElementById("ringTxt");
+  var whoInput = document.getElementById("who");
+  var syncNote = document.getElementById("syncNote");
+  var mgrBox = document.getElementById("mgrMode");
+  var shareBtn = document.getElementById("shareBtn");
+  var CIRC = 2 * Math.PI * 31;
+
+  function faDigits(n) {
+    return String(n).replace(/[0-9]/g, function (d) { return "۰۱۲۳۴۵۶۷۸۹"[+d]; });
+  }
+
+  function readLocal() {
+    try {
+      var raw = localStorage.getItem(LS_DONE);
+      if (raw) done = JSON.parse(raw) || {};
+      myName = localStorage.getItem(LS_NAME) || "";
+      mgr = localStorage.getItem(LS_MGR) === "1";
+    } catch (e) { done = {}; myName = ""; mgr = false; }
+  }
+  function writeLocal() {
+    try {
+      localStorage.setItem(LS_DONE, JSON.stringify(done));
+      localStorage.setItem(LS_NAME, myName);
+      localStorage.setItem(LS_MGR, mgr ? "1" : "0");
+    } catch (e) {}
+  }
+
+  function countDone() {
+    var n = 0;
+    for (var i = 0; i < TOTAL; i++) if (done[IDS[i]]) n++;
+    return n;
+  }
+
+  // a stage is unlocked when every earlier stage is ticked
+  function unlockedUpTo() {
+    var i = 0;
+    while (i < TOTAL && done[IDS[i]]) i++;
+    return i; // index of the first not-done stage = the open one
+  }
+
+  function paint() {
+    var openIdx = unlockedUpTo();
+    document.querySelectorAll(".week[data-order]").forEach(function (card) {
+      var order = parseInt(card.getAttribute("data-order"), 10);
+      var id = card.getAttribute("data-id");
+      var btn = card.querySelector("[data-tick]");
+      var body = card.querySelector(".week-body");
+      var isDone = !!done[id];
+      var locked = !mgr && !isDone && order > openIdx;
+
+      card.classList.toggle("done", isDone);
+      card.classList.toggle("locked", locked);
+      if (btn) {
+        btn.setAttribute("aria-pressed", isDone ? "true" : "false");
+        btn.disabled = locked;
+      }
+      if (body) body.hidden = locked;
+
+      var msg = card.querySelector(".lockmsg");
+      if (locked) {
+        if (!msg) {
+          msg = document.createElement("div");
+          msg.className = "lockmsg";
+          msg.innerHTML = "\u{1F512} <b>هنوز قفل است.</b> اول مرحله‌ی " +
+            faDigits(order - 1) + " را تمام کن و تیکش را بزن، بعد این مرحله خودش باز می‌شود.";
+          card.appendChild(msg);
+        }
+        msg.hidden = false;
+      } else if (msg) { msg.hidden = true; }
+    });
+
+    var n = countDone();
+    var pct = Math.round((n / TOTAL) * 100);
+    ringArc.setAttribute("stroke-dashoffset", String(CIRC * (1 - n / TOTAL)));
+    ringTxt.textContent = faDigits(pct) + "٪";
+
+    setLevel("lvl-bronze", ["w0","w1","w2","w3","w4","w5","w6"]);
+    setLevel("lvl-silver", ["w7","w8","w9"]);
+    setLevel("lvl-gold", ["w11","w12"]);
+  }
+
+  function setLevel(elId, need) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    el.classList.toggle("reached", need.every(function (k) { return !!done[k]; }));
+  }
+
+  // one short line the person pastes into Telegram for the manager
+  function shareText() {
+    var n = countDone();
+    var openIdx = unlockedUpTo();
+    var who = myName || "بدون نام";
+    var where = openIdx >= TOTAL
+      ? "همه‌ی مرحله‌ها تمام شد"
+      : "الان روی مرحله‌ی " + faDigits(openIdx);
+    return who + " — " + where + " · " + faDigits(n) + " از " + faDigits(TOTAL) +
+           " تمام (" + faDigits(Math.round((n / TOTAL) * 100)) + "٪)";
+  }
+
+  function copyText(text, btn, okLabel) {
+    var old = btn.textContent;
+    var ok = function () {
+      btn.textContent = okLabel; btn.classList.add("ok");
+      setTimeout(function () { btn.textContent = old; btn.classList.remove("ok"); }, 1800);
+    };
+    var fallback = function () {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); ok(); } catch (e) { btn.textContent = "کپی نشد"; }
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(ok, fallback);
+    } else { fallback(); }
+  }
+
+  // ---- ticks ----
+  document.addEventListener("click", function (ev) {
+    var btn = ev.target.closest ? ev.target.closest("[data-tick]") : null;
+    if (!btn || btn.disabled) return;
+    var id = btn.getAttribute("data-tick");
+    if (done[id]) delete done[id]; else done[id] = true;
+    writeLocal(); paint();
+  });
+
+  // ---- inline term definitions ----
+  document.addEventListener("click", function (ev) {
+    var t = ev.target.closest ? ev.target.closest(".term") : null;
+    if (!t) return;
+    var wrap = t.parentNode;
+    var open = wrap.classList.toggle("open");
+    t.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.querySelectorAll(".term").forEach(function (t) {
+    t.setAttribute("aria-expanded", "false");
+  });
+
+  // ---- name ----
+  whoInput.addEventListener("input", function () {
+    myName = whoInput.value.trim();
+    writeLocal();
+  });
+
+  // ---- share progress ----
+  shareBtn.addEventListener("click", function () {
+    copyText(shareText(), shareBtn, "کپی شد ✓");
+  });
+
+  // ---- manager mode ----
+  mgrBox.addEventListener("change", function () {
+    mgr = mgrBox.checked; writeLocal(); paint();
+  });
+
+  // ---- copy buttons ----
+  document.addEventListener("click", function (ev) {
+    var btn = ev.target.closest ? ev.target.closest(".copy") : null;
+    if (!btn) return;
+    var box = btn.closest(".prompt");
+    var pre = box && box.querySelector("pre");
+    if (!pre) return;
+    copyText(pre.textContent, btn, "کپی شد");
+  });
+
+  // ---- boot ----
+  readLocal();
+  whoInput.value = myName;
+  mgrBox.checked = mgr;
+  paint();
+})();
+</script>
+</body>
+</html>
